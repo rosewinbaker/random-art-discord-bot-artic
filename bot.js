@@ -24,7 +24,6 @@ client.on("message", (message) => {
         generateRandomImage(newURL)
       });
 
-
       // generate the random API request and include any relevant fields that exist
       function generateRandomImage(newURL) {
         request(newURL, { json: true }, (err, res, body) => {
@@ -96,16 +95,54 @@ client.on("message", (message) => {
               console.log('do you see this message?');
               message.channel.send("Whoops.. looks like that image isn't in the public domain. Eventually you will not see this message. In the meantime, let me try that again for you:")
               message.channel.send("!fart");
-
-            }
-
+            };
           });
-
-      }
-
-
-
+      };
   }
+
+  // Generate a random poem
+  else if (message.content.startsWith("!word")) {
+
+    request('https://www.poemist.com/api/v1/randompoems', { json: true }, (err, res, body) => {
+        if (err) { return console.log(err); }
+
+        
+        function generatePoem() {
+
+          var randomEntry = Math.floor(Math.random() * Math.floor(5));
+          console.log(body[randomEntry].title);
+
+          var poemTitle = body[randomEntry].title;
+          var poemPoet = body[randomEntry].poet.name;
+          var poemContent = body[randomEntry].content;
+          var poemURL = body[randomEntry].url;
+
+          message.channel.send(poemTitle + "\n" + "by " + poemPoet + "\n\n" + poemContent + "\n\n" + poemURL);
+
+
+          // // Switch to embedded format
+          // const embed = new Discord.MessageEmbed();
+
+          // var randomEntry = Math.floor(Math.random() * Math.floor(5));
+          // console.log(body[randomEntry].title);
+
+          
+          // var poemTitle = body[randomEntry].title;
+          // var poemPoet = body[randomEntry].poet.name;
+          // var poemContent = body[randomEntry].content;
+          // var poemURL = body[randomEntry].url;
+  
+          // embed.addField("Title", poemTitle);
+          // embed.addField("Poet", poemPoet);
+          // embed.addField("Content", poemContent);
+          // embed.addField("URL", poemURL);
+
+          // message.channel.send({embed});
+        };
+
+        generatePoem();
+      });
+   };
 });
 
 client.login(auth.token);
