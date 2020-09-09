@@ -167,7 +167,7 @@ client.on("message", (message) => {
     request(bookRequestURL, { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
-        
+
 
         const filter = (reaction, user) => {
           return reaction.emoji.name === '👍' && user.id === message.author.id;
@@ -192,18 +192,59 @@ client.on("message", (message) => {
           // Switch to embedded format
           const embed = new Discord.MessageEmbed();
           
-          var bookTitle = body.items[0].volumeInfo.title;
-          var bookAuthor = body.items[0].volumeInfo.authors[0];
-          var bookDescription = body.items[0].volumeInfo.description;
-          var bookDescriptionSubstring = bookDescription.substring(0, 1023);
-          var bookPages = body.items[0].volumeInfo.pageCount;
-  
-          embed.addField("Title", bookTitle);
-          embed.addField("Author", bookAuthor);
-          embed.addField("Description", bookDescriptionSubstring);
-          embed.addField("# of pages", bookPages);
+          // var bookTitle = body.items[0].volumeInfo.title;
+          // var bookAuthor = body.items[0].volumeInfo.authors[0];
+          // var bookDescription = body.items[0].volumeInfo.description;
+          // var bookDescriptionSubstring = bookDescription.substring(0, 1023);
+          // var bookPages = body.items[0].volumeInfo.pageCount;
 
-          embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
+          if (body.items[0].volumeInfo.title === null) {
+            console.log("hey that bookTitle is null");
+          }
+          else {
+            var bookTitle = body.items[0].volumeInfo.title;
+            embed.addField("Title", bookTitle);
+          };
+
+          if (body.items[0].volumeInfo.authors[0] === null) {
+            console.log("hey that bookAuthor is null");
+          }
+          else {
+            var bookAuthor = body.items[0].volumeInfo.authors[0];
+            embed.addField("Author", bookAuthor);
+          };
+
+          if (body.items[0].volumeInfo.description === null) {
+            console.log("hey that description is null");
+          }
+          else {
+            var bookDescription = body.items[0].volumeInfo.description;
+            var bookDescriptionSubstring = bookDescription.substring(0, 1023);
+            embed.addField("Description", bookDescriptionSubstring);
+          };
+
+          if (body.items[0].volumeInfo.pageCount === null) {
+            console.log("hey that pageCount is null");
+          }
+          else {
+            var bookPages = body.items[0].volumeInfo.pageCount;
+            embed.addField("# of pages", bookPages);
+          };
+
+          if (body.items[0].volumeInfo.imageLinks.thumbnail === null) {
+            console.log("hey that thumbnail is null");
+          }
+          else {
+            embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
+          };
+
+
+          // embed.addField("Title", bookTitle);
+          // embed.addField("Author", bookAuthor);
+          // embed.addField("Description", bookDescriptionSubstring);
+          // embed.addField("# of pages", bookPages);
+
+          // embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
 
           message.channel.send({embed});
       });
