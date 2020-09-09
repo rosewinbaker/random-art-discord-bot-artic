@@ -231,12 +231,18 @@ client.on("message", (message) => {
             embed.addField("# of pages", bookPages);
           };
 
-          if (body.items[0].volumeInfo.imageLinks === null) {
-            console.log("hey that imageLinks is null");
+          try {
+            if (body.items[0].volumeInfo.imageLinks === null) {
+              console.log("hey that imageLinks is null");
+            }
+            else {
+              embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
+            };
           }
-          else {
-            embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
-          };
+          catch {
+            console.log("oops couldn't do the image");
+          }
+
 
 
           // embed.addField("Title", bookTitle);
