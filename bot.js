@@ -167,7 +167,7 @@ client.on("message", (message) => {
     request(bookRequestURL, { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
-        message.channel.send("wow");
+        // message.channel.send("wow");
         console.log(body.items[0].volumeInfo.title);
 
           // Switch to embedded format
@@ -183,10 +183,9 @@ client.on("message", (message) => {
           embed.addField("Description", bookDescription);
           embed.addField("# of pages", bookPages);
 
-          embed.setImage("http://books.google.com/books/content?id=FD72ekYZqIkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api")
+          embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
 
           message.channel.send({embed});
-        
       });
    };
    
