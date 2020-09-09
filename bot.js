@@ -143,7 +143,17 @@ client.on("message", (message) => {
 
         generatePoem();
       });
+   }
+
+  // Generate a random poem
+  else if (message.content.startsWith("!heyo")) {
+
+    request('https://www.poemist.com/api/v1/randompoems', { json: true }, (err, res, body) => {
+        if (err) { return console.log(err); }
+        message.channel.send("wow");
+      });
    };
+   
 });
 
 // client.login(auth.token);
