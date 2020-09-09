@@ -1,8 +1,9 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const config = require('./config.json');
 // var auth = require('./auth.json');
-var auth = process.env.BOT_TOKEN;
-var request = require('request');
+const auth = process.env.BOT_TOKEN;
+const request = require('request');
 
 client.on("ready", () => {
   console.log("I am ready!");
