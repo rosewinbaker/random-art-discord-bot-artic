@@ -103,7 +103,7 @@ client.on("message", (message) => {
   }
 
   // Generate a random poem
-  else if (message.content.startsWith("!word")) {
+  else if (message.content.startsWith(prefix)) {
 
     request('https://www.poemist.com/api/v1/randompoems', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
