@@ -148,9 +148,11 @@ client.on("message", (message) => {
   // Generate a random poem
   else if (message.content.startsWith("!heyo")) {
 
-    request('https://www.poemist.com/api/v1/randompoems', { json: true }, (err, res, body) => {
+    request('https://www.googleapis.com/books/v1/volumes?q=eathsea', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
         message.channel.send("wow");
+        console.log(body.items[0].id);
+        
       });
    };
    
