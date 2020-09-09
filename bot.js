@@ -153,6 +153,7 @@ client.on("message", (message) => {
     const searchStuff = args.shift().toLowerCase();
     console.log("Args: " + args);
     console.log("Search stuff: " + searchStuff);
+    console.log("Arg 1: " + args[0]);
     message.channel.send("My search stuff: " + searchStuff + args);
 
     request('https://www.googleapis.com/books/v1/volumes?q=eathsea', { json: true }, (err, res, body) => {
