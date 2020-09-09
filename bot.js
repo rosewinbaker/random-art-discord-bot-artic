@@ -170,7 +170,7 @@ client.on("message", (message) => {
 
 
         const filter = (reaction, user) => {
-          return reaction.emoji.name === '👍' && user.id === message.author.id;
+          return reaction.emoji.name === ':thumbsup:' && user.id === message.author.id;
         };
         
         const collector = message.createReactionCollector(filter, { time: 15000 });
@@ -231,8 +231,8 @@ client.on("message", (message) => {
             embed.addField("# of pages", bookPages);
           };
 
-          if (body.items[0].volumeInfo.imageLinks.thumbnail === null) {
-            console.log("hey that thumbnail is null");
+          if (body.items[0].volumeInfo.imageLinks === null) {
+            console.log("hey that imageLinks is null");
           }
           else {
             embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
