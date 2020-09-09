@@ -159,7 +159,7 @@ client.on("message", (message) => {
     message.channel.send("Searching for: " + args);
 
     bookRequestURL = "https://www.googleapis.com/books/v1/volumes?q="
-    for (let i=0; i < args.length; i++) {
+    for (let i=1; i < args.length; i++) {
       bookRequestURL += "+" + args[i];
       console.log(bookRequestURL);
     };
@@ -180,7 +180,7 @@ client.on("message", (message) => {
   
           embed.addField("Title", bookTitle);
           embed.addField("Author", bookAuthor);
-          embed.addField("Description", bookDescription);
+          // embed.addField("Description", bookDescription);
           embed.addField("# of pages", bookPages);
 
           embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
