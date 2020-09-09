@@ -164,7 +164,7 @@ client.on("message", (message) => {
       console.log(bookRequestURL);
     };
 
-    request('bookRequestURL', { json: true }, (err, res, body) => {
+    request(bookRequestURL, { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
         message.channel.send("wow");
