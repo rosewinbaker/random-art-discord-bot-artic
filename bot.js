@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const config = require('./config.json');
+const { prefix } = require('./config.json');
 // var auth = require('./auth.json');
 const auth = process.env.BOT_TOKEN;
 const request = require('request');
