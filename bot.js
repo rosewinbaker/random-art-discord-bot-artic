@@ -149,13 +149,12 @@ client.on("message", (message) => {
   // Generate a random poem
   else if (message.content.startsWith(prefix)) {
 
+    const args = message.content.slice(prefix.length).trim().split(' ');
+    const searchStuff = args.shift().toLowerCase();
+    message.channel.send("My search stuff: " + searchStuff);
+
     request('https://www.googleapis.com/books/v1/volumes?q=eathsea', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
-
-        const args = message.content.slice(prefix.length).trim().split(' ');
-        const searchStuff = args.shift().toLowerCase();
-        message.channel.send(searchStuff);
-
 
         message.channel.send("wow");
         console.log(body.items[0].volumeInfo.title);
