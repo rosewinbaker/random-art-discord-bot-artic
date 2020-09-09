@@ -176,7 +176,7 @@ client.on("message", (message) => {
           var bookTitle = body.items[0].volumeInfo.title;
           var bookAuthor = body.items[0].volumeInfo.authors[0];
           var bookDescription = body.items[0].volumeInfo.description;
-          var bookDescriptionSubstring = bookDescription.substring(0, 1024);
+          var bookDescriptionSubstring = bookDescription.substring(0, 1023);
           var bookPages = body.items[0].volumeInfo.pageCount;
   
           embed.addField("Title", bookTitle);
