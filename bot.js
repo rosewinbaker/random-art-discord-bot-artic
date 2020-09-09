@@ -167,6 +167,25 @@ client.on("message", (message) => {
     request(bookRequestURL, { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
+        
+
+        const filter = (reaction, user) => {
+          return reaction.emoji.name === '👍' && user.id === message.author.id;
+        };
+        
+        const collector = message.createReactionCollector(filter, { time: 15000 });
+        
+        collector.on('collect', (reaction, user) => {
+          console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
+        });
+        
+        collector.on('end', collected => {
+          console.log(`Collected ${collected.size} items`);
+        });
+
+
+
+
         // message.channel.send("wow");
         console.log(body.items[0].volumeInfo.title);
 
