@@ -150,13 +150,21 @@ client.on("message", (message) => {
   else if (message.content.startsWith(prefix)) {
 
     const args = message.content.slice(prefix.length).trim().split(' ');
-    const searchStuff = args.shift().toLowerCase();
     console.log("Args: " + args);
-    console.log("Search stuff: " + searchStuff);
-    console.log("Arg 1: " + args[0]);
-    message.channel.send("My search stuff: " + searchStuff + args);
 
-    request('https://www.googleapis.com/books/v1/volumes?q=eathsea', { json: true }, (err, res, body) => {
+    // const searchStuff = args.shift().toLowerCase();
+    // console.log("Search stuff: " + searchStuff);
+
+    console.log("Arg 1: " + args[0]);
+    message.channel.send("Searching for: " + args);
+
+    bookRequestURL = "https://www.googleapis.com/books/v1/volumes?q="
+    for (let i=0; i < args.length; i++) {
+      bookRequestURL += "+" + args[i];
+      console.log(bookRequestURL);
+    };
+
+    request('bookRequestURL', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
         message.channel.send("wow");
