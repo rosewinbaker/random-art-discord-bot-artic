@@ -151,7 +151,24 @@ client.on("message", (message) => {
     request('https://www.googleapis.com/books/v1/volumes?q=eathsea', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
         message.channel.send("wow");
-        console.log(body.items[0].id);
+        console.log(body.items[0].volumeInfo.title);
+
+          // Switch to embedded format
+          const embed = new Discord.MessageEmbed();
+          
+          var bookTitle = body.items[0].volumeInfo.title;
+          var bookAuthor = body.items[0].volumeInfo.authors[0];
+          var bookDescription = body.items[0].volumeInfo.description;
+          var bookPages = body.items[0].volumeInfo.pageCount;
+  
+          embed.addField("Title", bookTitle);
+          embed.addField("Author", bookAuthor);
+          embed.addField("Description", bookDescription);
+          embed.addField("# of pages", bookPages);
+
+          embed.setImage("http://books.google.com/books/content?id=FD72ekYZqIkC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api")
+
+          message.channel.send({embed});
         
       });
    };
