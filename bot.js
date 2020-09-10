@@ -207,22 +207,7 @@ client.on("message", (message) => {
         //   });
 
 
-        
-          message.react('👍').then(r => {
-            message.react('👎');
-           });
 
-           // First argument is a filter function
-          message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '👍' || reaction.emoji.name == '👎'),
-            { max: 1, time: 30000 }).then(collected => {
-              if (collected.first().emoji.name == '👍') {
-                      message.reply('You replied thumbs up');
-              }
-              else
-                  message.reply('not a thumbs up');
-            }).catch(() => {
-                    message.reply('No reaction after 30 seconds, operation canceled');
-            });
 
 
 
@@ -291,6 +276,23 @@ client.on("message", (message) => {
           // embed.addField("# of pages", bookPages);
 
           // embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
+
+          message.react('👍').then(r => {
+            message.react('👎');
+           });
+
+           // First argument is a filter function
+          message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '👍' || reaction.emoji.name == '👎'),
+            { max: 1, time: 30000 }).then(collected => {
+              if (collected.first().emoji.name == '👍') {
+                      message.reply('You replied thumbs up');
+              }
+              else
+                  message.reply('not a thumbs up');
+            }).catch(() => {
+                    message.reply('No reaction after 30 seconds, operation canceled');
+            });
+
 
           message.channel.send({embed});
       });
