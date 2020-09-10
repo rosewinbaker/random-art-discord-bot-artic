@@ -216,38 +216,37 @@ client.on("message", (message) => {
           // var bookDescription = body.items[0].volumeInfo.description;
           // var bookDescriptionSubstring = bookDescription.substring(0, 1023);
           // var bookPages = body.items[0].volumeInfo.pageCount;
-
-          if (body.items[0].volumeInfo.title === null) {
-            console.log("hey that bookTitle is null");
-          }
-          else {
+          
+          try {
             var bookTitle = body.items[0].volumeInfo.title;
-            embed.addField("Title", bookTitle);
+          }
+          catch {
+            console.log("error adding bookTitle");
           };
 
-          if (body.items[0].volumeInfo.authors[0] === null) {
-            console.log("hey that bookAuthor is null");
-          }
-          else {
+          try {
             var bookAuthor = body.items[0].volumeInfo.authors[0];
             embed.addField("Author", bookAuthor);
+          }
+          catch {
+            console.log("error adding bookAuthor");
           };
 
-          if (body.items[0].volumeInfo.description === null) {
-            console.log("hey that description is null");
-          }
-          else {
+          try {
             var bookDescription = body.items[0].volumeInfo.description;
             var bookDescriptionSubstring = bookDescription.substring(0, 1023);
             embed.addField("Description", bookDescriptionSubstring);
+          }
+          catch {
+            console.log("error adding description");
           };
 
-          if (body.items[0].volumeInfo.pageCount === null) {
-            console.log("hey that pageCount is null");
-          }
-          else {
+          try {
             var bookPages = body.items[0].volumeInfo.pageCount;
             embed.addField("# of pages", bookPages);
+          }
+          catch {
+            console.log("error adding pageCount");
           };
 
           try {
@@ -260,7 +259,7 @@ client.on("message", (message) => {
           }
           catch {
             console.log("oops couldn't do the image");
-          }
+          };
 
 
 
