@@ -297,7 +297,7 @@ client.on("message", (message) => {
 
           // embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
 
-          fs.writeFileSync('./data.json', JSON.stringify(obj));
+          fs.writeFileSync('./data.json', JSON.stringify(bookObj));
           message.channel.send({embed});
       });
    };
