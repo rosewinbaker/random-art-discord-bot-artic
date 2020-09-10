@@ -4,6 +4,7 @@ const { prefix } = require('./config.json');
 // var auth = require('./auth.json');
 const auth = process.env.BOT_TOKEN;
 const request = require('request');
+const fs = require('fs');
 
 client.on("ready", () => {
   console.log("I am ready!");
@@ -225,7 +226,9 @@ client.on("message", (message) => {
             });
 
 
-
+          var bookObj = {
+  
+          };
 
         // message.channel.send("wow");
         console.log(body.items[0].volumeInfo.title);
@@ -242,6 +245,7 @@ client.on("message", (message) => {
           try {
             var bookTitle = body.items[0].volumeInfo.title;
             embed.addField("Title", bookTitle);
+            bookObj.title = bookTitle;
           }
           catch {
             console.log("error adding bookTitle");
@@ -250,6 +254,7 @@ client.on("message", (message) => {
           try {
             var bookAuthor = body.items[0].volumeInfo.authors[0];
             embed.addField("Author", bookAuthor);
+            bookObj.author = bookAuthor;
           }
           catch {
             console.log("error adding bookAuthor");
@@ -259,6 +264,7 @@ client.on("message", (message) => {
             var bookDescription = body.items[0].volumeInfo.description;
             var bookDescriptionSubstring = bookDescription.substring(0, 1023);
             embed.addField("Description", bookDescriptionSubstring);
+            bookObj.description = bookDescription;
           }
           catch {
             console.log("error adding description");
@@ -267,18 +273,16 @@ client.on("message", (message) => {
           try {
             var bookPages = body.items[0].volumeInfo.pageCount;
             embed.addField("# of pages", bookPages);
+            bookObj.pages = bookPages;
           }
           catch {
             console.log("error adding pageCount");
           };
 
           try {
-            if (body.items[0].volumeInfo.imageLinks === null) {
-              console.log("hey that imageLinks is null");
-            }
-            else {
-              embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
-            };
+            bookImageURL = body.items[0].volumeInfo.imageLinks.thumbnail
+            embed.setImage(bookImageURL);
+            bookObj.image = bookImageURL;
           }
           catch {
             console.log("oops couldn't do the image");
@@ -293,6 +297,7 @@ client.on("message", (message) => {
 
           // embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
 
+          fs.writeFileSync('./data.json', JSON.stringify(obj));
           message.channel.send({embed});
       });
    };
