@@ -241,6 +241,7 @@ client.on("message", (message) => {
           
           try {
             var bookTitle = body.items[0].volumeInfo.title;
+            embed.addField("Title", bookTitle);
           }
           catch {
             console.log("error adding bookTitle");
