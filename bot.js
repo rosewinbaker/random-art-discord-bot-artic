@@ -170,7 +170,7 @@ client.on("message", (message) => {
 
 
         const filter = (reaction, user) => {
-          return reaction.emoji.name === ':thumbsup:' && user.id === message.author.id;
+          return reaction.emoji.name === ':thumbsup:';
         };
         
         const collector = message.createReactionCollector(filter, { time: 15000 });
