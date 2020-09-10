@@ -169,19 +169,39 @@ client.on("message", (message) => {
 
 
 
+        // const filter = (reaction, user) => {
+        //   return reaction.emoji.name === ':thumbsup:';
+        // };
+        
+        // const collector = message.createReactionCollector(filter, { time: 15000 });
+        
+        // collector.on('collect', (reaction, user) => {
+        //   console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
+        // });
+        
+        // collector.on('end', collected => {
+        //   console.log(`Collected ${collected.size} items`);
+        // });
+
+        message.react(':thumbsup:').then(() => message.react(':thumbsdown:'));
+
         const filter = (reaction, user) => {
-          return reaction.emoji.name === ':thumbsup:';
+          return [':thumbsup:', ':thumbsdown:'].includes(reaction.emoji.name) && user.id === message.author.id;
         };
-        
-        const collector = message.createReactionCollector(filter, { time: 15000 });
-        
-        collector.on('collect', (reaction, user) => {
-          console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
-        });
-        
-        collector.on('end', collected => {
-          console.log(`Collected ${collected.size} items`);
-        });
+
+        message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+          .then(collected => {
+            const reaction = collected.first();
+
+            if (reaction.emoji.name === ':thumbsup:') {
+              message.reply('you reacted with a thumbs up.');
+            } else {
+              message.reply('you reacted with a thumbs down.');
+            }
+          })
+          .catch(collected => {
+            message.reply('you reacted with neither a thumbs up, nor a thumbs down.');
+          });
 
 
 
