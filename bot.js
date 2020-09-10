@@ -183,25 +183,47 @@ client.on("message", (message) => {
         //   console.log(`Collected ${collected.size} items`);
         // });
 
-        message.react('👍').then(() => message.react('👎'));
 
-        const filter = (reaction, user) => {
-          return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
-        };
+
+
+        // message.react('👍').then(() => message.react('👎'));
+
+        // const filter = (reaction, user) => {
+        //   return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
+        // };
         
-        message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-          .then(collected => {
-            const reaction = collected.first();
+        // message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+        //   .then(collected => {
+        //     const reaction = collected.first();
         
-            if (reaction.emoji.name === '👍') {
-              message.reply('you reacted with a thumbs up.');
-            } else {
-              message.reply('you reacted with a thumbs down.');
-            }
-          })
-          .catch(collected => {
-            message.reply('you reacted with neither a thumbs up, nor a thumbs down.');
-          });
+        //     if (reaction.emoji.name === '👍') {
+        //       message.reply('you reacted with a thumbs up.');
+        //     } else {
+        //       message.reply('you reacted with a thumbs down.');
+        //     }
+        //   })
+        //   .catch(collected => {
+        //     message.reply('you reacted with neither a thumbs up, nor a thumbs down.');
+        //   });
+
+
+        
+          message.react('👍').then(r => {
+            message.react('👎');
+           });
+
+           // First argument is a filter function
+          message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '👍' || reaction.emoji.name == '👎'),
+            { max: 1, time: 30000 }).then(collected => {
+              if (collected.first().emoji.name == '👍') {
+                      message.reply('You replied thumbs up');
+              }
+              else
+                  message.reply('not a thumbs up');
+            }).catch(() => {
+                    message.reply('No reaction after 30 seconds, operation canceled');
+            });
+
 
 
 
