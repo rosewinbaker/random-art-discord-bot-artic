@@ -183,17 +183,17 @@ client.on("message", (message) => {
         //   console.log(`Collected ${collected.size} items`);
         // });
 
-        message.react(':thumbsup:').then(() => message.react(':thumbsdown:'));
+        message.react('👍').then(() => message.react('👎'));
 
         const filter = (reaction, user) => {
-          return [':thumbsup:', ':thumbsdown:'].includes(reaction.emoji.name) && user.id === message.author.id;
+          return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
         };
-
+        
         message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
           .then(collected => {
             const reaction = collected.first();
-
-            if (reaction.emoji.name === ':thumbsup:') {
+        
+            if (reaction.emoji.name === '👍') {
               message.reply('you reacted with a thumbs up.');
             } else {
               message.reply('you reacted with a thumbs down.');
@@ -202,7 +202,6 @@ client.on("message", (message) => {
           .catch(collected => {
             message.reply('you reacted with neither a thumbs up, nor a thumbs down.');
           });
-
 
 
 
