@@ -38,16 +38,14 @@ function jeo(message) {
         message.channel.send(categoryMessage);
         message.channel.send(question);
         message.channel.send(titleCase(answer));
+        console.log(answer);
 
-        // const quiz = require('./quiz.json');
-        // const item = quiz[Math.floor(Math.random() * quiz.length)];
-
-        const filter = message => message.content.includes(answer);
+        // const filter = message => message.content.includes(answer);
         // const filter = message => message.content.includes("wtf");
 
-        // const filter = response => {
-        //     return (answer => answer.toLowerCase() === response.content.toLowerCase());
-        // };
+        const filter = response => {
+            return (answer => answer.toLowerCase() === response.content.toLowerCase());
+        };
 
         message.channel.send(question).then(() => {
             message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
