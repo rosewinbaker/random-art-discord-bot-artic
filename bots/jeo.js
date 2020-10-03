@@ -35,7 +35,7 @@ function jeo(message) {
 
         message.channel.send(categoryMessage);
         message.channel.send(question);
-        // message.channel.send(titleCase(answer));
+        message.channel.send(titleCase(answer));
 
         // const quiz = require('./quiz.json');
         // const item = quiz[Math.floor(Math.random() * quiz.length)];
