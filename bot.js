@@ -1,10 +1,14 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { prefix } = require('./config.json');
-// var auth = require('./auth.json');
 const auth = process.env.BOT_TOKEN;
 const request = require('request');
 const fs = require('fs');
+// var auth = require('./auth.json');
+var artbot = require('./bots/art.js');
+var wordbot = require('./bots/word.js');
+var heyoo = require('./bots/heyo.js');
+
 
 client.on("ready", () => {
   console.log("I am ready!");
@@ -13,295 +17,18 @@ client.on("ready", () => {
 client.on("message", (message) => {
 
   if (message.content.startsWith("!fart")){
-
-    // see how many results there are in total, then pick a random number to build the URL for next API request
-    request('https://api.artic.edu/api/v1/artworks?limit=1&page=1', { json: true }, (err, res, body) => {
-        if (err) { return console.log(err); }
-        var totalArt = body.pagination.total_pages
-
-        var randomArtNum = Math.floor(Math.random() * totalArt) + 1;
-        console.log(randomArtNum)
-        newURL = "https://api.artic.edu/api/v1/artworks?limit=1&page=" + randomArtNum
-        console.log(newURL)
-
-        generateRandomImage(newURL)
-      });
-
-      // generate the random API request and include any relevant fields that exist
-      function generateRandomImage(newURL) {
-        request(newURL, { json: true }, (err, res, body) => {
-            if (err) { return console.log(err); }
-
-            if (body.data[0].is_public_domain === true) {
-
-            console.log(body.data[0].id);
-            //message.channel.send("Artwork id: " + body.data[0].id);
-            
-            const embed = new Discord.MessageEmbed()
-
-            .setImage("https://www.artic.edu/iiif/2/" + body.data[0].image_id + "/full/843,/0/default.jpg")
-            .setColor(0x00AE86)
-
-            if (body.data[0].title === null) {
-              console.log("hey that title is null");
-            }
-            else {
-              embed.addField("Title", body.data[0].title)
-            }
-
-            if (body.data[0].title === null) {
-              console.log("hey that artist_display is null");
-            }
-            else {
-              embed.addField("Artist", body.data[0].artist_display)
-            }
-
-            if (body.data[0].date_display === null) {
-              console.log("hey that date_display is null");
-            }
-            else {
-              embed.addField("Date", body.data[0].date_display, true)
-            }
-
-            if (body.data[0].medium_display === null) {
-              console.log("hey that medium_display is null");
-            }
-            else {
-              embed.addField("Medium", body.data[0].medium_display, true)
-            }
-
-            if (body.data[0].description === null) {
-              console.log("hey that description is null");
-            }
-            else {
-              embed.addField("Description", body.data[0].description)
-            }
-
-            if (body.data[0].credit_line === null) {
-              console.log("hey that credit_line is null");
-            }
-            else {
-              embed.addField("Credit", body.data[0].credit_line)
-            }
-
-            if (body.data[0].provenance_text === null) {
-              console.log("hey that provenance_text is null");
-            }
-            else {
-              console.log("Provenance", body.data[0].provenance_text, true)
-            }
-            
-            message.channel.send({embed});
-            }
-
-            else {
-              console.log('do you see this message?');
-              message.channel.send("Whoops.. looks like that image isn't in the public domain. Eventually you will not see this message. In the meantime, let me try that again for you:")
-              message.channel.send("!fart");
-            };
-          });
-      };
+    artbot();
   }
 
   // Generate a random poem
   else if (message.content.startsWith("!word")) {
-
-    request('https://www.poemist.com/api/v1/randompoems', { json: true }, (err, res, body) => {
-        if (err) { return console.log(err); }
-
-        
-        function generatePoem() {
-
-          var randomEntry = Math.floor(Math.random() * Math.floor(5));
-          console.log(body[randomEntry].title);
-
-          var poemTitle = body[randomEntry].title;
-          var poemPoet = body[randomEntry].poet.name;
-          var poemContent = body[randomEntry].content;
-          var poemURL = body[randomEntry].url;
-
-          message.channel.send(poemTitle + "\n" + "by " + poemPoet + "\n\n" + poemContent + "\n\n" + poemURL);
-
-
-          // // Switch to embedded format
-          // const embed = new Discord.MessageEmbed();
-
-          // var randomEntry = Math.floor(Math.random() * Math.floor(5));
-          // console.log(body[randomEntry].title);
-
-          
-          // var poemTitle = body[randomEntry].title;
-          // var poemPoet = body[randomEntry].poet.name;
-          // var poemContent = body[randomEntry].content;
-          // var poemURL = body[randomEntry].url;
-  
-          // embed.addField("Title", poemTitle);
-          // embed.addField("Poet", poemPoet);
-          // embed.addField("Content", poemContent);
-          // embed.addField("URL", poemURL);
-
-          // message.channel.send({embed});
-        };
-
-        generatePoem();
-      });
+    wordbot();
    }
 
-  // Generate a random poem
+  // Search for a book
   else if (message.content.startsWith(prefix)) {
-
-    const args = message.content.slice(prefix.length).trim().split(' ');
-    console.log("Args: " + args);
-
-    // const searchStuff = args.shift().toLowerCase();
-    // console.log("Search stuff: " + searchStuff);
-
-    console.log("Arg 1: " + args[0]);
-    message.channel.send("Searching for: " + args);
-
-    bookRequestURL = "https://www.googleapis.com/books/v1/volumes?q="
-    for (let i=0; i < args.length; i++) {
-      bookRequestURL += "+" + args[i];
-      console.log(bookRequestURL);
-    };
-
-    request(bookRequestURL, { json: true }, (err, res, body) => {
-        if (err) { return console.log(err); }
-
-
-
-        // const filter = (reaction, user) => {
-        //   return reaction.emoji.name === ':thumbsup:';
-        // };
-        
-        // const collector = message.createReactionCollector(filter, { time: 15000 });
-        
-        // collector.on('collect', (reaction, user) => {
-        //   console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
-        // });
-        
-        // collector.on('end', collected => {
-        //   console.log(`Collected ${collected.size} items`);
-        // });
-
-
-
-
-        // message.react('👍').then(() => message.react('👎'));
-
-        // const filter = (reaction, user) => {
-        //   return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
-        // };
-        
-        // message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-        //   .then(collected => {
-        //     const reaction = collected.first();
-        
-        //     if (reaction.emoji.name === '👍') {
-        //       message.reply('you reacted with a thumbs up.');
-        //     } else {
-        //       message.reply('you reacted with a thumbs down.');
-        //     }
-        //   })
-        //   .catch(collected => {
-        //     message.reply('you reacted with neither a thumbs up, nor a thumbs down.');
-        //   });
-
-
-        
-          message.react('👍').then(r => {
-            message.react('👎');
-           });
-
-           // First argument is a filter function
-          message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '👍' || reaction.emoji.name == '👎'),
-            { max: 1, time: 30000 }).then(collected => {
-              if (collected.first().emoji.name == '👍') {
-                      message.reply('You replied thumbs up');
-              }
-              else
-                  message.reply('not a thumbs up');
-            }).catch(() => {
-                    message.reply('No reaction after 30 seconds, operation canceled');
-            });
-
-
-          var bookObj = {
-  
-          };
-
-        // message.channel.send("wow");
-        console.log(body.items[0].volumeInfo.title);
-
-          // Switch to embedded format
-          const embed = new Discord.MessageEmbed();
-          
-          // var bookTitle = body.items[0].volumeInfo.title;
-          // var bookAuthor = body.items[0].volumeInfo.authors[0];
-          // var bookDescription = body.items[0].volumeInfo.description;
-          // var bookDescriptionSubstring = bookDescription.substring(0, 1023);
-          // var bookPages = body.items[0].volumeInfo.pageCount;
-          
-          try {
-            var bookTitle = body.items[0].volumeInfo.title;
-            embed.addField("Title", bookTitle);
-            bookObj.title = bookTitle;
-          }
-          catch {
-            console.log("error adding bookTitle");
-          };
-
-          try {
-            var bookAuthor = body.items[0].volumeInfo.authors[0];
-            embed.addField("Author", bookAuthor);
-            bookObj.author = bookAuthor;
-          }
-          catch {
-            console.log("error adding bookAuthor");
-          };
-
-          try {
-            var bookDescription = body.items[0].volumeInfo.description;
-            var bookDescriptionSubstring = bookDescription.substring(0, 1023);
-            embed.addField("Description", bookDescriptionSubstring);
-            bookObj.description = bookDescription;
-          }
-          catch {
-            console.log("error adding description");
-          };
-
-          try {
-            var bookPages = body.items[0].volumeInfo.pageCount;
-            embed.addField("# of pages", bookPages);
-            bookObj.pages = bookPages;
-          }
-          catch {
-            console.log("error adding pageCount");
-          };
-
-          try {
-            bookImageURL = body.items[0].volumeInfo.imageLinks.thumbnail
-            embed.setImage(bookImageURL);
-            bookObj.image = bookImageURL;
-          }
-          catch {
-            console.log("oops couldn't do the image");
-          };
-
-
-
-          // embed.addField("Title", bookTitle);
-          // embed.addField("Author", bookAuthor);
-          // embed.addField("Description", bookDescriptionSubstring);
-          // embed.addField("# of pages", bookPages);
-
-          // embed.setImage(body.items[0].volumeInfo.imageLinks.thumbnail);
-
-          fs.writeFileSync('./data.json', JSON.stringify(bookObj));
-          message.channel.send({embed});
-      });
-   };
-   
+    heyoo();
+  };
 });
 
 // client.login(auth.token);
