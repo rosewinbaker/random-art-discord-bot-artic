@@ -1,3 +1,5 @@
+const request = require('request');
+
 function word() {
 
     request('https://www.poemist.com/api/v1/randompoems', { json: true }, (err, res, body) => {

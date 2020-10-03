@@ -1,3 +1,5 @@
+const request = require('request');
+
 function art() {
     // see how many results there are in total, then pick a random number to build the URL for next API request
     request('https://api.artic.edu/api/v1/artworks?limit=1&page=1', { json: true }, (err, res, body) => {

@@ -1,3 +1,5 @@
+const request = require('request');
+
 function heyoo() {
 
     const args = message.content.slice(prefix.length).trim().split(' ');
