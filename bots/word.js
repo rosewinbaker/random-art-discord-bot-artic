@@ -1,6 +1,6 @@
 const request = require('request');
 
-function word() {
+function word(message) {
 
     request('https://www.poemist.com/api/v1/randompoems', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }

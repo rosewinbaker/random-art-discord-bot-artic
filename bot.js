@@ -17,17 +17,17 @@ client.on("ready", () => {
 client.on("message", (message) => {
 
   if (message.content.startsWith("!fart")){
-    artbot();
+    artbot(message);
   }
 
   // Generate a random poem
   else if (message.content.startsWith("!word")) {
-    wordbot();
+    wordbot(message);
    }
 
   // Search for a book
   else if (message.content.startsWith(prefix)) {
-    heyoo();
+    heyoo(message);
   };
 });
 

@@ -3,7 +3,7 @@ const { prefix } = require('../config.json');
 const request = require('request');
 const fs = require('fs');
 
-function heyoo() {
+function heyoo(message) {
 
     const args = message.content.slice(prefix.length).trim().split(' ');
     console.log("Args: " + args);
