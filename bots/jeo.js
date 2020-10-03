@@ -19,7 +19,7 @@ function jeo(message) {
         if (err) { return console.log(err); }
 
         var question = body[0].question
-        var answer = body[0].answer
+        var answer = titleCase(body[0].answer)
         var category = body[0].category.title
         var value = body[0].value
 
@@ -37,7 +37,7 @@ function jeo(message) {
 
         message.channel.send(categoryMessage);
         message.channel.send(question);
-        message.channel.send(titleCase(answer));
+        message.channel.send(answer);
 
         console.log("Category message: " + categoryMessage);
         console.log("Question: " + question);
