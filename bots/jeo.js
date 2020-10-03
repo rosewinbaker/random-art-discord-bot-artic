@@ -42,7 +42,7 @@ function jeo(message) {
         // const quiz = require('./quiz.json');
         // const item = quiz[Math.floor(Math.random() * quiz.length)];
 
-        const filter = m => m.content.includes(answer);
+        const filter = message => message.content.includes(answer);
 
         // const filter = response => {
         //     return (answer => answer.toLowerCase() === response.content.toLowerCase());
