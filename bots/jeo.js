@@ -39,9 +39,12 @@ function jeo(message) {
 
         // const quiz = require('./quiz.json');
         // const item = quiz[Math.floor(Math.random() * quiz.length)];
-        const filter = response => {
-            return answer(answer => answer.toLowerCase() === response.content.toLowerCase());
-        };
+
+        const filter = message => message.content.startsWith(answer);
+
+        // const filter = response => {
+        //     return answer(answer => answer.toLowerCase() === response.content.toLowerCase());
+        // };
 
         message.channel.send(question).then(() => {
             message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
