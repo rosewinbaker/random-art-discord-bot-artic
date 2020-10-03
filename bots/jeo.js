@@ -22,15 +22,17 @@ function jeo(message) {
         var value = body[0].value
 
         var addMoney;
+        var categoryMessage;
 
         if (value === null) {
             console.log("hey that value is null");
+            categoryMessage = "Category is " + titleCase(category);
           }
           else {
             addMoney = " for $" + value;
+            categoryMessage = "Category is " + titleCase(category) + addMoney;
           }
 
-        message.channel.send("Category is " + titleCase(category) + addMoney);
         message.channel.send(question);
         message.channel.send(titleCase(answer));
     })
