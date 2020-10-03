@@ -11,6 +11,8 @@ function titleCase(str) {
     return splitStr.join(' '); 
  }
 
+ 
+
 function jeo(message) {
 
     request('http://jservice.io/api/random', { json: true }, (err, res, body) => {
@@ -40,7 +42,7 @@ function jeo(message) {
         // const quiz = require('./quiz.json');
         // const item = quiz[Math.floor(Math.random() * quiz.length)];
 
-        const filter = message => message.content.startsWith(answer);
+        const filter = m => m.content.startsWith(answer);
 
         // const filter = response => {
         //     return answer(answer => answer.toLowerCase() === response.content.toLowerCase());
@@ -56,8 +58,6 @@ function jeo(message) {
                 });
             });
     })
-
-    
 }
 
 module.exports = jeo
