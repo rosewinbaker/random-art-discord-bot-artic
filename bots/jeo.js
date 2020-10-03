@@ -40,7 +40,7 @@ function jeo(message) {
         // const quiz = require('./quiz.json');
         // const item = quiz[Math.floor(Math.random() * quiz.length)];
         const filter = response => {
-            return answer.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+            return answer(answer => answer.toLowerCase() === response.content.toLowerCase());
         };
 
         message.channel.send(question).then(() => {
