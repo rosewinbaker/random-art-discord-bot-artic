@@ -28,7 +28,7 @@ function jeo(message) {
 
         if (value === null) {
             console.log("hey that value is null");
-            categoryMessage = "Category is " + titleCase(category);
+            categoryMessage = "Category is '" + titleCase(category) + "'";
           }
           else {
             addMoney = " for $" + value;
