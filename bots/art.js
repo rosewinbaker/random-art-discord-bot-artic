@@ -1,9 +1,5 @@
 const Discord = require("discord.js");
-const client = new Discord.Client();
-const { prefix } = require('./config.json');
-const auth = process.env.BOT_TOKEN;
 const request = require('request');
-const fs = require('fs');
 
 function art() {
     // see how many results there are in total, then pick a random number to build the URL for next API request
