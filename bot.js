@@ -6,7 +6,7 @@ const auth = process.env.BOT_TOKEN;
 var artbot = require('./bots/art.js');
 var wordbot = require('./bots/word.js');
 var heyoo = require('./bots/heyo.js');
-var heyoo = require('./bots/jeo.js');
+var jeo = require('./bots/jeo.js');
 
 
 client.on("ready", () => {
