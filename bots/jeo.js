@@ -32,7 +32,7 @@ function jeo(message) {
 
         message.channel.send("Category is " + titleCase(category) + addMoney);
         message.channel.send(question);
-        message.channel.send(answer);
+        message.channel.send(titleCase(answer));
     })
 
     
