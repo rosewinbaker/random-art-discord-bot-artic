@@ -10,7 +10,16 @@ function jeo(message) {
         var category = body[0].category.title
         var value = body[0].value
 
-        message.channel.send("Category is " + category + " for $" + value);
+        var addMoney;
+
+        if (value === null) {
+            console.log("hey that value is null");
+          }
+          else {
+            addMoney = " for $" + value;
+          }
+
+        message.channel.send("Category is " + category + addMoney);
         message.channel.send(question);
         message.channel.send(answer);
     })
