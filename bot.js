@@ -2,12 +2,11 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { prefix } = require('./config.json');
 const auth = process.env.BOT_TOKEN;
-const request = require('request');
-const fs = require('fs');
 // var auth = require('./auth.json');
 var artbot = require('./bots/art.js');
 var wordbot = require('./bots/word.js');
 var heyoo = require('./bots/heyo.js');
+var heyoo = require('./bots/jeo.js');
 
 
 client.on("ready", () => {
@@ -28,6 +27,11 @@ client.on("message", (message) => {
   // Search for a book
   else if (message.content.startsWith(prefix)) {
     heyoo(message);
+  }
+
+  // Jeopardy question
+  else if (message.content.startsWith("!jeo")) {
+    jeo(message);
   };
 });
 
