@@ -32,13 +32,16 @@ function jeo(message) {
           }
           else {
             addMoney = " for $" + value;
-            categoryMessage = "Category is " + titleCase(category) + addMoney;
+            categoryMessage = "Category is '" + titleCase(category) + "'" + addMoney;
           }
 
         message.channel.send(categoryMessage);
         message.channel.send(question);
         message.channel.send(titleCase(answer));
-        console.log(answer);
+
+        console.log("Category message: " + categoryMessage);
+        console.log("Question: " + question);
+        console.log("Answer: " + answer);
 
         // const filter = message => message.content.includes(answer);
         // const filter = message => message.content.includes("wtf");
