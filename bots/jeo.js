@@ -43,12 +43,12 @@ function jeo(message) {
         console.log("Question: " + question);
         console.log("Answer: " + answer);
 
-        // const filter = message => message.content.includes(answer);
+        const filter = message => message.content.includes(answer);
         // const filter = message => message.content.includes("wtf");
 
-        const filter = response => {
-            return (answer => answer.toLowerCase() === response.content.toLowerCase());
-        };
+        // const filter = response => {
+        //     return (answer => answer.toLowerCase() === response.content.toLowerCase());
+        // };
 
         message.channel.send(question).then(() => {
             message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
