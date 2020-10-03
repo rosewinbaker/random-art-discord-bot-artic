@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/artstyles.css">
+
+
+    <title>Art Gen</title>
+</head>
+
+<body>
+
+    <div id="container">
+
+        <div></div>
+        <div id="top">
+                <h3>art what's up</h3>
+                <button type="button" id="myBtn" onclick="getRandomIdNum()">ready for something new</button>
+        </div>
+        <div></div>
+
+        <div></div>
+        <div id="myart">
+
+            <div id="artimagediv">
+                    <img src="" id="myimage"></img>
+                    <p id="artimage">Image URL: </p>
+            </div>
+
+            <div id="artinfodiv">
+                <span id="randomartnum"> </span> / <span id="totalpages"> </span>
+                <p id="newAPIURL">New API URL: </p>
+                <p id="arttitle">Title: </p>
+                <p id="artist_title">Artist: </p>
+                <p id="date_display">Date: </p>
+                <p id="medium_display"> Medium: </p>
+                <p id="description">Description: </p>
+
+                <!---  
+                <p id="category_titles">Category Titles: </p>
+                <p id="term_titles">Term Titles: </p>
+                <p id="classification_title">Classification Titles: </p>
+
+                --->
+            </div>
+        
+
+
+            <script>
+
+                async function getRandomIdNum() {
+
+                    var theURL = "https://api.artic.edu/api/v1/artworks?limit=1";
+
+                    var settings1 = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": theURL,
+                        "method": "GET"
+                    }
+
+                    async function generateRandomImage(newURL) {
+
+                        var settings = {
+                            "async": true,
+                            "crossDomain": true,
+                            "url": newURL,
+                            "method": "GET"
+                        }
+
+                        $.ajax(settings).done(function (response) {
+                            console.log(response);
+
+                        var imageURL = "https://www.artic.edu/iiif/2/" + response.data[0].image_id + "/full/843,/0/default.jpg"
+                            // f3c62d0b-01a7-9fc9-9a6a-7da6b118203e
+
+                            // artist_title, date_display, description, medium_display, colorfulness, category_titles[], term_titles[], classification_title
+                            // thumbnail.alt_text
+
+                            var arttitle = response.data[0].title
+                            $("#arttitle").append(arttitle);
+
+                            var artist_title = response.data[0].artist_title
+                            var date_display = response.data[0].date_display
+                            var medium_display = response.data[0].medium_display
+                            var description = response.data[0].description
+                            var category_titles = response.data[0].category_titles
+                            var term_titles = response.data[0].term_titles
+                            var classification_title = response.data[0].classification_title
+
+
+                            $("#artimage").append(imageURL);
+                            $("[id='myimage']").attr("src", imageURL);
+                            $("#artist_title").append(artist_title);
+                            $("#date_display").append(date_display);
+                            $("#medium_display").append(medium_display);
+                            $("#description").append(description);
+                            $("#category_titles").append(category_titles);
+                            $("#term_titles").append(term_titles);
+                            $("#classification_title").append(classification_title);
+
+
+                        })
+
+                    }
+
+                    $.ajax(settings1).done(function (response) {
+                        console.log(response);
+
+                        var totalArt = response.pagination.total_pages
+                        $("#totalpages").append(totalArt);
+
+                        var randomArtNum = Math.floor(Math.random() * totalArt) + 1;
+                        $("#randomartnum").append(randomArtNum);
+                        newURL = "https://api.artic.edu/api/v1/artworks?limit=1&page=" + randomArtNum
+                        $("#newAPIURL").append(newURL);
+
+                        generateRandomImage(newURL)
+
+                    });
+
+                }
+
+
+
+                getRandomIdNum()
+
+            </script>
+
+            </div>
+        <div></div>
+
+        <div></div>
+        <div id="bottom"></div>
+        <div></div>
+
+    </div>
+
+</body>
+
+</html>
