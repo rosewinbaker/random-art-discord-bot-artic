@@ -1,5 +1,5 @@
 const { createCanvas, loadImage } = require('canvas')
-const canvas = createCanvas(500, 500)
+const canvas = createCanvas(50, 50)
 const ctx = canvas.getContext('2d')
 
 // function createImage() {

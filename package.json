@@ -17,6 +17,7 @@
         "request": "2.81.0",
         "sequelize": "^6.3.5",
         "sequelize-cli": "^6.2.0",
+        "tinyurl": "^1.1.7",
         "winston": "^3.3.3"
     }
 }
