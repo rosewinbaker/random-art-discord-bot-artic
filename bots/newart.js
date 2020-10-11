@@ -24,7 +24,7 @@ function createImage() {
 
 function newart(message) {
     createImage();
-    message.channel.send("My Bot's message", {files: [imaageDataURL]});
+    message.channel.send("My Bot's message", {files: [imageDataURL]});
 };
 
 module.exports = newart
