@@ -39,6 +39,7 @@ ctx.stroke();
 var imageDataURL = canvas.toDataURL();
 
 console.log(imageDataURL);
+console.log('changed something');
 
 const embed = new Discord.MessageEmbed() // Ver 12.2.0 of Discord.js
     .setTitle("This is a title")
