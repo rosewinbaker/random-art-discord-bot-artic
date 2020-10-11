@@ -41,8 +41,8 @@ client.on("message", (message) => {
     
     const embed = new Discord.MessageEmbed()
       .setTitle("This is a title")
-      .setImage(newart.imageDataURL)
-      .setThumbnail(newart.imageDataURL)
+      .setImage(imageDataURL)
+      .setThumbnail(imageDataURL)
       message.channel.send(embed) 
   };
 });
