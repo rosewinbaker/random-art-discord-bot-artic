@@ -10,8 +10,12 @@
     "dependencies": {
         "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
         "discord.js": "^12.2.0",
+        "mysql2": "^2.2.5",
         "pg": "^8.3.3",
+        "pg-hstore": "^2.3.3",
         "request": "2.81.0",
+        "sequelize": "^6.3.5",
+        "sequelize-cli": "^6.2.0",
         "winston": "^3.3.3"
     }
 }

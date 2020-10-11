@@ -1,3 +1,13 @@
-{
-	"prefix": "!heyo"
-}
+[
+	{
+		"development": {
+		  "username": "",
+		  "password": "",
+		  "database": "",
+		  "host": "",
+		  "dialect": "postgres",
+		  "operatorsAliases": false
+		},
+		"prefix": "!heyo"
+	}
+]
