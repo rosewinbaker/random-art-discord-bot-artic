@@ -8,6 +8,7 @@ var wordbot = require('./bots/word.js');
 var heyoo = require('./bots/heyo.js');
 var jeo = require('./bots/jeo.js');
 var newart = require('./bots/newart.js');
+import { imageDataURL } from "./bots/newart.js";
 
 
 client.on("ready", () => {
@@ -39,12 +40,12 @@ client.on("message", (message) => {
   else if (message.content.startsWith("!newart")) {
     newart(message);
 
-    console.log(newart.imageDataURL);
+    console.log(imageDataURL);
     
     const embed = new Discord.MessageEmbed()
       .setTitle("This is a title")
-      .setImage(newart.imageDataURL)
-      .setThumbnail(newart.imageDataURL)
+      .setImage(imageDataURL)
+      .setThumbnail(imageDataURL)
       message.channel.send(embed) 
   };
 });

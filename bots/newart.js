@@ -20,8 +20,6 @@ function newart() {
     ctx.stroke();
 
     var imageDataURL = canvas.toDataURL();
-
-    return imageDataURL;
     // console.log(imageDataURL);
 
     // message.channel.send("My Bot's message", {files: [imageDataURL]});
