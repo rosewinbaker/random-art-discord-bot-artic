@@ -41,11 +41,11 @@ var imageDataURL = canvas.toDataURL();
 console.log(imageDataURL);
 console.log('changed something');
 
-const embed = new Discord.MessageEmbed() // Ver 12.2.0 of Discord.js
-    .setTitle("This is a title")
-    .setImage(imageDataURL)
-    .setThumbnail(imageDataURL)
-    message.channel.send(embed) 
+// const embed = new Discord.MessageEmbed()
+//     .setTitle("This is a title")
+//     .setImage(imageDataURL)
+//     .setThumbnail(imageDataURL)
+//     message.channel.send(embed) 
 
 // function newart(message) {
 //     // createImage();

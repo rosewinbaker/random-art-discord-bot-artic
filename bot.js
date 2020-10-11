@@ -38,6 +38,12 @@ client.on("message", (message) => {
   // Jeopardy question
   else if (message.content.startsWith("!newart")) {
     newart(message);
+    
+    const embed = new Discord.MessageEmbed()
+      .setTitle("This is a title")
+      .setImage(newart.imageDataURL)
+      .setThumbnail(newart.imageDataURL)
+      message.channel.send(embed) 
   };
 });
 
