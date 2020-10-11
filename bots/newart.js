@@ -17,9 +17,9 @@ function createImage() {
     ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
     ctx.stroke();
 
-    var imaageDataURL = canvas.toDataURL();
+    var imageDataURL = canvas.toDataURL();
 
-    console.log(imaageDataURL);
+    console.log(imageDataURL);
 }
 
 function newart(message) {
