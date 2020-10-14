@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 const request = require('request');
 
 function queen(message) {
