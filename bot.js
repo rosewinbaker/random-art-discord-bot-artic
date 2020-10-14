@@ -7,6 +7,7 @@ var artbot = require('./bots/art.js');
 var wordbot = require('./bots/word.js');
 var heyoo = require('./bots/heyo.js');
 var jeo = require('./bots/jeo.js');
+var jeo = require('./bots/queen.js');
 var newart = require('./bots/newart.js');
 // import { imageDataURL } from "./bots/newart.js";
 const { createCanvas, loadImage } = require('canvas')
@@ -39,7 +40,12 @@ client.on("message", (message) => {
     jeo(message);
   }
 
-  // Jeopardy question
+    // Jeopardy question
+    else if (message.content.startsWith("!queen")) {
+      queen(message);
+    }
+
+  // gen art question
   else if (message.content.startsWith("!newart")) {
     newart(message);
     ctx.fillStyle = "blue";
