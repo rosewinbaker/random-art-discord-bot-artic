@@ -35,7 +35,7 @@ function jeo(message) {
             categoryMessage = "Category is '" + titleCase(category) + "'" + addMoney;
           }
 
-        // message.channel.send(categoryMessage);
+        message.channel.send(categoryMessage);
         // message.channel.send(question);
         // message.channel.send(answer);
 
