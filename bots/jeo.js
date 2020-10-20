@@ -56,7 +56,7 @@ function jeo(message) {
                     message.channel.send(`${collected.first().author} got the correct answer!`);
                 })
                 .catch(collected => {
-                    message.channel.send('Looks like nobody got the answer this time.');
+                    message.channel.send('Looks like nobody got the answer this time. Correct answer: ' + answer);
                 });
             });
     })
