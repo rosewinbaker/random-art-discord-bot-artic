@@ -53,7 +53,7 @@ function jeo(message) {
         message.channel.send(question).then(() => {
             message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
                 .then(collected => {
-                    message.channel.send('${collected.first().author} got the correct answer! ' + answer );
+                    message.channel.send(`${collected.first().author} got the correct answer! ` + answer) );
                 })
                 .catch(collected => {
                     message.channel.send('Looks like nobody got the answer this time. Correct answer: ' + answer);
