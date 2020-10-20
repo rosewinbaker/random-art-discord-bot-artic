@@ -51,7 +51,7 @@ function jeo(message) {
         // };
 
         message.channel.send(question).then(() => {
-            message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
+            message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
                 .then(collected => {
                     message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
                 })
