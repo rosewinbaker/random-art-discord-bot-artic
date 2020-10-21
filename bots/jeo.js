@@ -22,6 +22,7 @@ function jeo(message) {
         var answer = titleCase(body[0].answer).replace( /(<([^>]+)>)/ig, '');
         var category = body[0].category.title
         var value = body[0].value
+        var catNum = body[o].category.id
 
         var addMoney;
         var categoryMessage;
@@ -32,7 +33,7 @@ function jeo(message) {
           }
           else {
             addMoney = " for $" + value;
-            categoryMessage = "Category is '" + titleCase(category) + "'" + addMoney;
+            categoryMessage = "Category is '" + titleCase(category) + "'" + "(#" + catNum + ") " + addMoney;
           }
 
         message.channel.send(categoryMessage);
@@ -42,6 +43,7 @@ function jeo(message) {
         console.log("Category message: " + categoryMessage);
         console.log("Question: " + question);
         console.log("Answer: " + answer);
+        console.log("Category number: " + catNum)
 
         const filter = message => message.content.includes(answer);
         // const filter = message => message.content.includes("wtf");
