@@ -22,7 +22,7 @@ function jeo(message) {
         var answer = titleCase(body[0].answer).replace( /(<([^>]+)>)/ig, '');
         var category = body[0].category.title
         var value = body[0].value
-        var catNum = body[o].category.id
+        var catNum = body[0].category.id
 
         var addMoney;
         var categoryMessage;
