@@ -33,7 +33,7 @@ function jeo(message) {
           }
           else {
             addMoney = " for $" + value;
-            categoryMessage = "Category is '" + titleCase(category) + "'" + "(#" + catNum + ") " + addMoney;
+            categoryMessage = "Category is '" + titleCase(category) + "'" + " (#" + catNum + ") " + addMoney;
           }
 
         message.channel.send(categoryMessage);
