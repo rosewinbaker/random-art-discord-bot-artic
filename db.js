@@ -32,6 +32,4 @@ function deb(message) {
   });
 }
 
-db()
-
 module.exports = deb
