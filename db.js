@@ -6,7 +6,8 @@ const { Client } = require('pg');
 // })
 
 
-function jeotest(message) {
+function db(message) {
+  message.channel.send('heyo')
   const client = new Client({
     connectionString: process.env.DATABASE_URL,
     // ssl: {
@@ -31,4 +32,4 @@ function jeotest(message) {
   });
 }
 
-module.exports = jeotest
+module.exports = db
