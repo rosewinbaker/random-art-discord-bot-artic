@@ -42,7 +42,7 @@ client.on("message", (message) => {
   }
 
     // Jeopardy question
-    else if (message.content.startsWith("!jeoo")) {
+    else if (message.content.startsWith("!dbjeo")) {
       db(message);
     }
 
