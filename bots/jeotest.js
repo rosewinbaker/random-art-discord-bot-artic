@@ -1,3 +1,4 @@
+const { Client } = require('pg');
 const request = require('request');
 
 function titleCase(str) {
@@ -11,7 +12,7 @@ function titleCase(str) {
     return splitStr.join(' '); 
  }
 
-function jeotest(message) {
+function jeootest(message) {
 
     request('http://jservice.io/api/random', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
@@ -63,4 +64,4 @@ function jeotest(message) {
     })
 }
 
-module.exports = jeotest
+module.exports = jeootest
