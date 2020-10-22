@@ -6,7 +6,7 @@ const { Client } = require('pg');
 // })
 
 
-function db(message) {
+function deb(message) {
   message.channel.send('heyo')
   const client = new Client({
     connectionString: process.env.DATABASE_URL,
@@ -19,7 +19,7 @@ function db(message) {
   
   const query = `
   INSERT INTO users (userid, points)
-  VALUES ('249565807288254474', 600)
+  VALUES ('249565807288254475', 600)
   `;
   
   client.query(query, (err, res) => {
@@ -32,4 +32,6 @@ function db(message) {
   });
 }
 
-module.exports = db
+db()
+
+module.exports = deb

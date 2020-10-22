@@ -7,14 +7,13 @@ var artbot = require('./bots/art.js');
 var wordbot = require('./bots/word.js');
 var heyoo = require('./bots/heyo.js');
 var jeo = require('./bots/jeo.js');
-var db = require('./db.js');
+var deb = require('./db.js');
 var queen = require('./bots/queen.js');
 var newart = require('./bots/newart.js');
 // import { imageDataURL } from "./bots/newart.js";
 const { createCanvas, loadImage } = require('canvas')
 const canvas = createCanvas(50, 50)
 const ctx = canvas.getContext('2d')
-
 
 client.on("ready", () => {
   console.log("I am ready!");
@@ -43,7 +42,7 @@ client.on("message", (message) => {
 
     // Jeopardy question
     else if (message.content.startsWith("!dbjeo")) {
-      db(message);
+      deb(message);
     }
 
     // Jeopardy question
