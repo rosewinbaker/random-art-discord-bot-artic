@@ -6,15 +6,24 @@ const { Client } = require('pg');
 // })
 
 const client = new Client({
-  connectionString: process.env.DATABASE_URL
+  connectionString: process.env.DATABASE_URL,
+  // ssl: {
+  //   rejectUnauthorized: false
+  // }
 });
 
 client.connect();
 
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
+const query = `
+INSERT INTO users (userid, points)
+VALUES ('109066294543790080', 400)
+`;
+
+client.query(query, (err, res) => {
+  if (err) {
+      console.error(err);
+      return;
   }
+  console.log('Data was inserted successfully');
   client.end();
 });
