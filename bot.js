@@ -7,6 +7,7 @@ var artbot = require('./bots/art.js');
 var wordbot = require('./bots/word.js');
 var heyoo = require('./bots/heyo.js');
 var jeo = require('./bots/jeo.js');
+var jeotest = require('./bots/jeotest.js');
 var queen = require('./bots/queen.js');
 var newart = require('./bots/newart.js');
 // import { imageDataURL } from "./bots/newart.js";
@@ -39,6 +40,11 @@ client.on("message", (message) => {
   else if (message.content.startsWith("!jeo")) {
     jeo(message);
   }
+
+    // Jeopardy question
+    else if (message.content.startsWith("!jeoo")) {
+      jeotest(message);
+    }
 
     // Jeopardy question
     else if (message.content.startsWith("!queen")) {
