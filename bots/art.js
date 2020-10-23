@@ -20,9 +20,9 @@ function art(message) {
         request(newURL, { json: true }, (err, res, body) => {
             if (err) { return console.log(err); }
 
-            console.log(body)
-            
-            if (body.data[0].is_public_domain === true) {
+            // console.log(body)
+
+            // if (body.data[0].is_public_domain === true) {
 
             console.log(body.data[0].id);
             //message.channel.send("Artwork id: " + body.data[0].id);
@@ -84,11 +84,11 @@ function art(message) {
             message.channel.send({embed});
             }
 
-            else {
-              console.log('do you see this message?');
-              message.channel.send("Whoops.. looks like that image isn't in the public domain. Eventually you will not see this message. In the meantime, let me try that again for you:")
-              message.channel.send("!fart");
-            };
+            // else {
+            //   console.log('do you see this message?');
+            //   message.channel.send("Whoops.. looks like that image isn't in the public domain. Eventually you will not see this message. In the meantime, let me try that again for you:")
+            //   message.channel.send("!fart");
+            // };
           });
       };
 };
