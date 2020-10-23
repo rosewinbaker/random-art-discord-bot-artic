@@ -24,7 +24,7 @@ client.on("ready", () => {
 
 client.on("message", (message) => {
 
-  if (message.content.startsWith("!fart")){
+  if (message.content.startsWith("!fartt")){
     artbot(message);
   }
 
