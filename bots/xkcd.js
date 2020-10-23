@@ -17,7 +17,15 @@ function xkcd(message) {
             
             var comicURL = body.img
 
-            message.channel.send(comicURL);
+            var date = body.day + "/" + body.month + "/" + body.year
+
+            const embed = new Discord.MessageEmbed()
+
+            .setTitle(body.title)
+            .setImage(comicURL)
+            .setDescription('Originally published ' + date)
+
+            message.channel.send({embed});
 
         };
 
