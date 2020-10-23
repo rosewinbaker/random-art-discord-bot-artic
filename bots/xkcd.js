@@ -1,4 +1,5 @@
 const request = require('request');
+const Discord = require("discord.js");
 
 function xkcd(message) {
 
