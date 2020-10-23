@@ -25,6 +25,7 @@ function art(message) {
             // if (body.data[0].is_public_domain === true) {
 
             console.log(body.data[0].id);
+            console.log('hey')
             //message.channel.send("Artwork id: " + body.data[0].id);
             
             const embed = new Discord.MessageEmbed()
