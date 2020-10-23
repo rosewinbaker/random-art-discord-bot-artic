@@ -58,6 +58,8 @@ function jeo(message) {
                 })
                 .catch(collected => {
                     message.channel.send('Looks like nobody got the answer this time. Correct answer: ' + answer);
+                    message.channel.send("Here's a cute cat for your troubles: ");
+                    message.channel.send("!meow");
                 });
             });
     })
