@@ -7,10 +7,12 @@ function meow(message) {
 
         
         function generateCat() {
-        
-          var randomCat = body.url
 
-          message.channel.send(randomCat);
+            console.log(body[0].url)
+            
+            var randomCat = body[0].url
+
+            message.channel.send(randomCat);
 
         };
 
