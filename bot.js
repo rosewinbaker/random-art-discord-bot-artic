@@ -11,7 +11,7 @@ var deb = require('./db.js');
 var queen = require('./bots/queen.js');
 var meow = require('./bots/meow.js');
 var newart = require('./bots/newart.js');
-var newart = require('./bots/xkcd.js');
+var xkcd = require('./bots/xkcd.js');
 // import { imageDataURL } from "./bots/newart.js";
 const { createCanvas, loadImage } = require('canvas')
 const canvas = createCanvas(50, 50)
