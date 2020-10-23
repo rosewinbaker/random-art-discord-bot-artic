@@ -9,11 +9,14 @@ var heyoo = require('./bots/heyo.js');
 var jeo = require('./bots/jeo.js');
 var deb = require('./db.js');
 var queen = require('./bots/queen.js');
+var meow = require('./bots/meow.js');
 var newart = require('./bots/newart.js');
 // import { imageDataURL } from "./bots/newart.js";
 const { createCanvas, loadImage } = require('canvas')
 const canvas = createCanvas(50, 50)
 const ctx = canvas.getContext('2d')
+const db = require('./models/index.js');
+
 
 client.on("ready", () => {
   console.log("I am ready!");
@@ -28,6 +31,11 @@ client.on("message", (message) => {
   // Generate a random poem
   else if (message.content.startsWith("!word")) {
     wordbot(message);
+   }
+
+     // Generate a random cat
+  else if (message.content.startsWith("!meow")) {
+    meow(message);
    }
 
   // Search for a book
