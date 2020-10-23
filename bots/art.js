@@ -20,6 +20,8 @@ function art(message) {
         request(newURL, { json: true }, (err, res, body) => {
             if (err) { return console.log(err); }
 
+            console.log(body)
+            
             if (body.data[0].is_public_domain === true) {
 
             console.log(body.data[0].id);
