@@ -82,7 +82,7 @@ function art(message) {
             }
             
             message.channel.send({embed});
-            }
+            // }
 
             // else {
             //   console.log('do you see this message?');
