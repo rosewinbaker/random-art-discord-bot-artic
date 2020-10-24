@@ -19,7 +19,12 @@ function newart() {
     ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
     ctx.stroke();
 
-    var imageDataURL = canvas.toDataURL();
+
+    // var imageDataURL = canvas.toDataURL();
+
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'random-artwork.png');
+    message.channel.send(attachment);
+    console.log("sent attachment")
     // console.log(imageDataURL);
 
     // message.channel.send("My Bot's message", {files: [imageDataURL]});
