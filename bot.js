@@ -82,7 +82,7 @@ client.on("message", (message) => {
     
     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'random-artwork.png');
 
-    channel.send(attachment);
+    message.channel.send(attachment);
 
     console.log("sent attachment")
 
