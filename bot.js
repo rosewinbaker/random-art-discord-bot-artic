@@ -79,16 +79,22 @@ client.on("message", (message) => {
     ctx.moveTo(95, 65);
     ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
     ctx.stroke();
-
-    var imageDataURL = canvas.toDataURL();
-
-    console.log(imageDataURL);
     
-    const embed = new Discord.MessageEmbed()
-      .setTitle("This is a title")
-      .setImage(imageDataURL)
-      .setThumbnail(imageDataURL)
-      message.channel.send(embed) 
+    const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'random-artwork.png');
+
+    channel.send(attachment);
+
+    console.log("sent attachment")
+
+    // var imageDataURL = canvas.toDataURL();
+
+    // console.log(imageDataURL);
+    
+    // const embed = new Discord.MessageEmbed()
+    //   .setTitle("This is a title")
+    //   .setImage(imageDataURL)
+    //   .setThumbnail(imageDataURL)
+    //   message.channel.send(embed) 
   };
 });
 
