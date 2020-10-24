@@ -4,14 +4,25 @@ const canvas = createCanvas(500, 500)
 const ctx = canvas.getContext('2d')
 
 function newart(message) {
-    var gradient = ctx.createLinearGradient(0, 0, -(canvas.width/10), canvas.height);
-    gradient.addColorStop(0, 'red');
-    gradient.addColorStop(1 / 6, 'orange');
-    gradient.addColorStop(2 / 6, 'yellow');
-    gradient.addColorStop(3 / 6, 'green');
-    gradient.addColorStop(4 / 6, 'blue');
-    gradient.addColorStop(5 / 6, 'indigo');
-    gradient.addColorStop(1, 'violet');
+    var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+
+
+
+    let c1 = color(random(255),random(255),random(255));
+    let c2 = color(random(255),random(255),random(255));
+    let c3  = color(random(255),random(255),random(255));
+    let c4  = color(random(255),random(255),random(255))
+    let c5  = color(random(255),random(255),random(255));
+    let c6  = color(random(255),random(255),random(255));
+    let c7  = color(random(255),random(255),random(255));
+
+    gradient.addColorStop(0, c1);
+    gradient.addColorStop(1 / 6, c2);
+    gradient.addColorStop(2 / 6, c3);
+    gradient.addColorStop(3 / 6, c4);
+    gradient.addColorStop(4 / 6, c5);
+    gradient.addColorStop(5 / 6, c6);
+    gradient.addColorStop(1, c7);
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
