@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const { createCanvas, loadImage } = require('canvas')
-const canvas = createCanvas(200, 200)
+const canvas = createCanvas(500, 500)
 const ctx = canvas.getContext('2d')
 
 function newart(message) {
