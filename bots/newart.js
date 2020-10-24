@@ -4,7 +4,7 @@ const canvas = createCanvas(500, 500)
 const ctx = canvas.getContext('2d')
 
 function newart(message) {
-    var gradient = ctx.createLinearGradient(0, 0, (canvas.width/2), canvas.height);
+    var gradient = ctx.createLinearGradient(0, 0, (canvas.width/10), canvas.height);
     gradient.addColorStop(0, 'red');
     gradient.addColorStop(1 / 6, 'orange');
     gradient.addColorStop(2 / 6, 'yellow');
