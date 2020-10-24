@@ -6,15 +6,30 @@ const ctx = canvas.getContext('2d')
 function newart(message) {
     var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
 
+    function getRandomColour(){
+        var red = Math.floor(Math.random()* 255);
+        var green = Math.floor(Math.random() * 255);
+        var blue = Math.floor(Math.random() * 255);
+      
+        return "rgb("+red+","+green+"," +blue+" )";  
+      }
 
 
-    let c1 = color(random(255),random(255),random(255));
-    let c2 = color(random(255),random(255),random(255));
-    let c3  = color(random(255),random(255),random(255));
-    let c4  = color(random(255),random(255),random(255))
-    let c5  = color(random(255),random(255),random(255));
-    let c6  = color(random(255),random(255),random(255));
-    let c7  = color(random(255),random(255),random(255));
+    getRandomColour()
+    let c1 = Math.floor(Math.random()* 255)
+    getRandomColour()
+    let c2 = Math.floor(Math.random()* 255)
+    getRandomColour()
+    let c3  = Math.floor(Math.random()* 255)
+    getRandomColour()
+    let c4  = Math.floor(Math.random()* 255)
+    getRandomColour()
+    let c5  = Math.floor(Math.random()* 255)
+    getRandomColour()
+    let c6  = Math.floor(Math.random()* 255)
+    getRandomColour()
+    let c7  = Math.floor(Math.random()* 255)
+    getRandomColour()
 
     gradient.addColorStop(0, c1);
     gradient.addColorStop(1 / 6, c2);
