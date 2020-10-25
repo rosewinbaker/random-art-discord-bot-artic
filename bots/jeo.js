@@ -26,6 +26,20 @@ function jeo(message) {
         var addMoney;
         var categoryMessage;
 
+        date = new Date(airdate);
+        year = date.getFullYear();
+        month = date.getMonth()+1;
+        dt = date.getDate();
+
+        if (dt < 10) {
+        dt = '0' + dt;
+        }
+        if (month < 10) {
+        month = '0' + month;
+        }
+
+        console.log("Hey here's your new date: " + year+'-' + month + '-'+dt);
+
         if (value === null) {
             console.log("hey that value is null");
             categoryMessage = "Category is '" + titleCase(category) + "'";
