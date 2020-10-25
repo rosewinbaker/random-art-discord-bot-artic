@@ -43,7 +43,7 @@ function jeo(message) {
         console.log("Question: " + question);
         console.log("Answer: " + answer);
         console.log("Category number: " + catNum)
-        console.log("Airdate: " + airdate)
+        console.log("Airdate: " + airDate)
 
         const filter = message => message.content.includes(answer);
         // const filter = message => message.content.includes("wtf");
