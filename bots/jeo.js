@@ -54,16 +54,12 @@ function jeo(message) {
           const exampleEmbed = new Discord.MessageEmbed()
             .setTitle(categoryMessage)
             .setURL('https://discord.js.org/')
-            .setDescription('Some description here')
+            .setDescription(question)
             .addFields(
                 { name: 'Airdate', value: finalAirDate, inline: true },
                 { name: 'Category ID', value: catNum, inline: true },
                 { name: 'Category ID', value: qID, inline: true },
             )
-            .addField('Inline field title', 'Some value here', true)
-            .setImage('https://i.imgur.com/wSTFkRM.png')
-            .setTimestamp()
-            .setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
 
         // channel.send(exampleEmbed);
 
