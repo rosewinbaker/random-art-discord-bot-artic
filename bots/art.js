@@ -7,7 +7,7 @@ function art(message) {
         if (err) { return console.log(err); }
         var totalArt = body.pagination.total_pages
 
-        var randomArtNum = Math.floor(Math.random() * totalArt) + 1;
+        var randomArtNum = Math.floor(Math.random() * 25000) + 1;
         console.log(randomArtNum)
         newURL = "https://api.artic.edu/api/v1/artworks?limit=1&page=" + randomArtNum
         console.log(newURL)
