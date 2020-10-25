@@ -26,7 +26,7 @@ function jeo(message) {
         var addMoney;
         var categoryMessage;
 
-        date = new Date(airdate);
+        date = new Date(airDate);
         year = date.getFullYear();
         month = date.getMonth()+1;
         dt = date.getDate();
