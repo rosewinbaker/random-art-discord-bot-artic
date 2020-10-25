@@ -1,6 +1,7 @@
 const request = require('request');
 const Discord = require("discord.js");
 
+
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
@@ -64,8 +65,20 @@ function jeo(message) {
         // channel.send(exampleEmbed);
 
 
+        const { createCanvas, loadImage } = require('canvas')
+        const canvas = createCanvas(500, 500)
+        const ctx = canvas.getContext('2d')
+        ctx.fillStyle = '#060CE9';
+        ctx.fillRect(0, 0, canvas.width, canvas.length);
 
+        	// Assign the decided font to the canvas
+        ctx.font = applyText(canvas, question);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(question, canvas.width / 2.5, canvas.height / 1.8);
 
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'jeopardy.png');
+
+        channel.send(attachment);
 
 
         // message.channel.send(categoryMessage + " - originally aired " + finalAirDate);
