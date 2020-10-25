@@ -21,6 +21,7 @@ function jeo(message) {
         var category = body[0].category.title
         var value = body[0].value
         var catNum = body[0].category.id
+        var airDate = body[0].airdate
 
         var addMoney;
         var categoryMessage;
@@ -42,6 +43,7 @@ function jeo(message) {
         console.log("Question: " + question);
         console.log("Answer: " + answer);
         console.log("Category number: " + catNum)
+        console.log("Airdate: " + airdate)
 
         const filter = message => message.content.includes(answer);
         // const filter = message => message.content.includes("wtf");
