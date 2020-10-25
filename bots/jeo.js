@@ -38,7 +38,7 @@ function jeo(message) {
         month = '0' + month;
         }
 
-        console.log("Hey here's your new date: " + year+'-' + month + '-'+dt);
+        finalAirDate = (year+'-' + month + '-'+dt)
 
         if (value === null) {
             console.log("hey that value is null");
@@ -49,7 +49,7 @@ function jeo(message) {
             categoryMessage = "Category is '" + titleCase(category) + "'" + " (#" + catNum + ") " + addMoney;
           }
 
-        message.channel.send(categoryMessage);
+        message.channel.send(categoryMessage + " - originally aired + " + finalAirDate);
         // message.channel.send(question);
         // message.channel.send(answer);
 
