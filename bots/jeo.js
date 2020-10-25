@@ -98,7 +98,7 @@ function jeo(message) {
 
         ctx.fillStyle = 'white';
         ctx.textAlign = "center";
-        ctx.font = "15px Arial";
+        ctx.font = "Helvetica";
         ctx.fillText(question, canvas.width / 2, canvas.height / 2);
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'jeopardy.png');
