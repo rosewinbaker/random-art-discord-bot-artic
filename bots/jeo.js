@@ -64,12 +64,32 @@ function jeo(message) {
 
         // channel.send(exampleEmbed);
 
+   
+
 
         const { createCanvas, loadImage } = require('canvas')
         const canvas = createCanvas(500, 500)
         const ctx = canvas.getContext('2d')
         ctx.fillStyle = '#060CE9';
         ctx.fillRect(0, 0, canvas.width, canvas.length);
+
+
+            // Pass the entire Canvas object because you'll need to access its width, as well its context
+            const applyText = (canvas, text) => {
+            const ctx = canvas.getContext('2d');
+
+            // Declare a base size of the font
+            let fontSize = 70;
+
+            do {
+                // Assign the font to the context and decrement it so it can be measured again
+                ctx.font = `${fontSize -= 10}px sans-serif`;
+                // Compare pixel width of the text to the canvas minus the approximate avatar size
+            } while (ctx.measureText(text).width > canvas.width - 300);
+
+            // Return the result to use in the actual canvas
+            return ctx.font;
+        };
 
         	// Assign the decided font to the canvas
         ctx.font = applyText(canvas, question);
