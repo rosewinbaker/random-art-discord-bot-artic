@@ -78,9 +78,9 @@ function jeo(message) {
         // ctx.font = "Helvetica";
         // ctx.fillText(question, canvas.width / 2, canvas.height / 2);
 
-        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'jeopardy.png');
+        // const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'jeopardy.png');
 
-        message.channel.send(attachment);
+        // message.channel.send(attachment);
 
 
         // message.channel.send(categoryMessage + " - originally aired " + finalAirDate);
