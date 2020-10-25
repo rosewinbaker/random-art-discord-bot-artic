@@ -66,21 +66,21 @@ function jeo(message) {
 
    
 
-        // // Create canvas with Jeopardy style text
-        // const { createCanvas } = require('canvas')
-        // const canvas = createCanvas(500, 500)
-        // const ctx = canvas.getContext('2d')
-        // ctx.fillStyle = '#060CE9';
-        // ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Create canvas with Jeopardy style text
+        const { createCanvas } = require('canvas')
+        const canvas = createCanvas(500, 500)
+        const ctx = canvas.getContext('2d')
+        ctx.fillStyle = '#060CE9';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // ctx.fillStyle = 'white';
-        // ctx.textAlign = "center";
-        // ctx.font = "Helvetica";
-        // ctx.fillText(question, canvas.width / 2, canvas.height / 2);
+        ctx.fillStyle = 'white';
+        ctx.textAlign = "center";
+        ctx.font = "Helvetica";
+        ctx.fillText(question, canvas.width / 2, canvas.height / 2);
 
-        // const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'jeopardy.png');
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'jeopardy.png');
 
-        // message.channel.send(attachment);
+        message.channel.send(attachment);
 
 
         // message.channel.send(categoryMessage + " - originally aired " + finalAirDate);
