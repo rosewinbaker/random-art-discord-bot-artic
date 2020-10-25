@@ -75,7 +75,6 @@ function jeo(message) {
 
         // Pass the entire Canvas object because you'll need to access its width, as well its context
         const applyText = (canvas, text) => {
-            const ctx = canvas.getContext('2d');
 
             // Declare a base size of the font
             let fontSize = 70;
@@ -90,12 +89,13 @@ function jeo(message) {
             return ctx.font;
         };
 
+    
         ctx.fillStyle = 'white';
         ctx.textAlign = "center";
-        ctx.font = "Helvetica";
+        ctx.font = '50 px Helvetica';
 
         // Add an exclamation point here and below
-        ctx.font = applyText(canvas, `${question}!`);
+        // ctx.font = applyText(canvas, question);
         ctx.fillStyle = '#ffffff';
         ctx.fillText(`${question}!`, canvas.width / 2.5, canvas.height / 1.8);
 
