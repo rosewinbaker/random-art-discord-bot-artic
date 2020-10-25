@@ -70,7 +70,7 @@ function jeo(message) {
         const { createCanvas } = require('canvas')
         const canvas = createCanvas(500, 500)
         const ctx = canvas.getContext('2d')
-        ctx.fillStyle = 'blue';
+        ctx.fillStyle = '#060CE9';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
@@ -93,7 +93,7 @@ function jeo(message) {
 
         	// Assign the decided font to the canvas
         ctx.font = applyText(canvas, question);
-        ctx.fillStyle = '#060CE9';
+        ctx.fillStyle = 'white';
         ctx.textAlign = "center";
         ctx.fillText(question, canvas.width / 2, canvas.height / 2);
 
