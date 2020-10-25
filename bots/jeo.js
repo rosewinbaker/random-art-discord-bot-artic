@@ -70,7 +70,7 @@ function jeo(message) {
         const { createCanvas, loadImage } = require('canvas')
         const canvas = createCanvas(500, 500)
         const ctx = canvas.getContext('2d')
-        ctx.fillStyle = '#060CE9';
+        ctx.fillStyle = 'blue';
         ctx.fillRect(0, 0, canvas.width, canvas.length);
 
 
