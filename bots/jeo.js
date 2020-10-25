@@ -67,11 +67,11 @@ function jeo(message) {
    
 
 
-        const { createCanvas, loadImage } = require('canvas')
+        const { createCanvas } = require('canvas')
         const canvas = createCanvas(500, 500)
         const ctx = canvas.getContext('2d')
         ctx.fillStyle = 'blue';
-        ctx.fillRect(0, 0, canvas.width, canvas.length);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
             // Pass the entire Canvas object because you'll need to access its width, as well its context
