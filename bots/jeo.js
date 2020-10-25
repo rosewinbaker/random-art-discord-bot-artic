@@ -93,8 +93,9 @@ function jeo(message) {
 
         	// Assign the decided font to the canvas
         ctx.font = applyText(canvas, question);
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText(question, canvas.width / 2.5, canvas.height / 1.8);
+        ctx.fillStyle = '#060CE9';
+        ctx.textAlign = "center";
+        ctx.fillText(question, canvas.width / 2, canvas.height / 2);
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'jeopardy.png');
 
