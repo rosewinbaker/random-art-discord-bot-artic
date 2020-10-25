@@ -22,7 +22,7 @@ function jeo(message) {
         var category = body[0].category.title
         var value = body[0].value
         var catNum = body[0].category.id
-        var qID = body[0].category.id
+        var qID = body[0].id
         var airDate = body[0].airdate
 
         var addMoney;
@@ -48,7 +48,7 @@ function jeo(message) {
           }
           else {
             addMoney = " for $" + value;
-            categoryMessage = "Category is '" + titleCase(category) + "'" + " (#" + catNum + ") " + addMoney;
+            categoryMessage = "Category is '" + titleCase(category) + "'" + addMoney;
           }
 
           const exampleEmbed = new Discord.MessageEmbed()
@@ -58,7 +58,7 @@ function jeo(message) {
             .addFields(
                 { name: 'Airdate', value: finalAirDate, inline: true },
                 { name: 'Category ID', value: catNum, inline: true },
-                { name: 'Category ID', value: qID, inline: true },
+                { name: 'Q ID', value: qID, inline: true },
             )
 
         // channel.send(exampleEmbed);
