@@ -21,6 +21,7 @@ function jeo(message) {
         var category = body[0].category.title
         var value = body[0].value
         var catNum = body[0].category.id
+        var qID = body[0].category.id
         var airDate = body[0].airdate
 
         var addMoney;
@@ -49,7 +50,28 @@ function jeo(message) {
             categoryMessage = "Category is '" + titleCase(category) + "'" + " (#" + catNum + ") " + addMoney;
           }
 
-        message.channel.send(categoryMessage + " - originally aired + " + finalAirDate);
+          const exampleEmbed = new Discord.MessageEmbed()
+            .setTitle(categoryMessage)
+            .setURL('https://discord.js.org/')
+            .setDescription('Some description here')
+            .addFields(
+                { name: 'Airdate', value: finalAirDate, inline: true },
+                { name: 'Category ID', value: catNum, inline: true },
+                { name: 'Category ID', value: qID, inline: true },
+            )
+            .addField('Inline field title', 'Some value here', true)
+            .setImage('https://i.imgur.com/wSTFkRM.png')
+            .setTimestamp()
+            .setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
+
+        // channel.send(exampleEmbed);
+
+
+
+
+
+
+        // message.channel.send(categoryMessage + " - originally aired " + finalAirDate);
         // message.channel.send(question);
         // message.channel.send(answer);
 
@@ -66,7 +88,7 @@ function jeo(message) {
         //     return (answer => answer.toLowerCase() === response.content.toLowerCase());
         // };
 
-        message.channel.send(question).then(() => {
+        message.channel.send(exampleEmbed).then(() => {
             message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
                 .then(collected => {
                     message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
