@@ -98,7 +98,7 @@ function jeo(message) {
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'jeopardy.png');
 
-        channel.send(attachment);
+        message.channel.send(attachment);
 
 
         // message.channel.send(categoryMessage + " - originally aired " + finalAirDate);
