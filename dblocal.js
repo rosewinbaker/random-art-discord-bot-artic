@@ -7,6 +7,7 @@ const { Client } = require('pg');
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
+
     // ssl: {
     //   rejectUnauthorized: false
     // }
@@ -17,7 +18,7 @@ client.connect();
 
 const query = `
 INSERT INTO users (userid, points)
-VALUES ('249565807288254476', 601)
+VALUES ('249565807288254477', 777)
 `;
 
 client.query(query, (err, res) => {
