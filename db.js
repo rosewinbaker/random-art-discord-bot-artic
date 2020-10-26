@@ -18,7 +18,7 @@ function deb(message) {
   client.connect();
   
   const query = `
-  INSERT INTO users (userid, points)
+  INSERT INTO jeopardy_test_points (userid, points)
   VALUES ('249565807288254475', 600)
   `;
   
