@@ -1,6 +1,8 @@
 const { Client } = require('pg');
 const request = require('request');
 
+
+
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
@@ -56,6 +58,32 @@ function jeootest(message) {
                 .then(collected => {
                     message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
                     console.log(`${collected.first().author.id} got the correct answer! `)
+
+                    const client = new Client({
+                        connectionString: process.env.DATABASE_URL,
+                        // ssl: {
+                        //   rejectUnauthorized: false
+                        // }
+                      });
+                      
+                      client.connect();
+                      
+                      const query = `
+                      INSERT INTO jeopardy_test_points (userid, points)
+                      VALUES (${collected.first().author.id}, ${value})
+                      `;
+                      
+                      client.query(query, (err, res) => {
+                        if (err) {
+                            console.error(err);
+                            return;
+                        }
+                        console.log('Data was inserted successfully');
+                        client.end();
+                      });
+
+
+
                 })
                 .catch(collected => {
                     message.channel.send('Looks like nobody got the answer this time. Correct answer: ' + answer);
