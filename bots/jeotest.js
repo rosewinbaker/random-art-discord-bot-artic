@@ -81,6 +81,9 @@ function jeootest(message) {
                             return;
                         }
                         console.log(res);
+                        
+                        console.log("Row count is: " + res.rowCount);
+
                         console.log('user exists maybe?');
                         client.end();
                       }); 
