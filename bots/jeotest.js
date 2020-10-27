@@ -57,6 +57,7 @@ function jeootest(message) {
             message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
                 .then(collected => {
                     message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
+                    message.channel.send(`${value} to ${collected.first().author}. You go, ${collected.first().author}!`)
                     console.log(`${collected.first().author.id} got the correct answer! `)
 
                     const client = new Client({
