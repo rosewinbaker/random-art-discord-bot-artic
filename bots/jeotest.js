@@ -72,7 +72,7 @@ function jeootest(message) {
                       const checkUser = `
                         SELECT *
                         FROM jeopardy_test_points
-                        WHERE userid = ${collected.first().author.id})
+                        WHERE userid = ${collected.first().author.id}
                         `;
 
                     client.query(checkUser, (err, res) => {
