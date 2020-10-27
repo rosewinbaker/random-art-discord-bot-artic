@@ -75,7 +75,7 @@ function jeootest(message) {
                         WHERE userid = ${collected.first().author.id})
                         `;
 
-                    client.checkUser(query, (err, res) => {
+                    client.query(checkUser, (err, res) => {
                         if (err) {
                             console.error(err);
                             return;
