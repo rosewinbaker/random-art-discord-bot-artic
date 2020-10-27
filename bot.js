@@ -7,6 +7,7 @@ var artbot = require('./bots/art.js');
 var wordbot = require('./bots/word.js');
 var heyoo = require('./bots/heyo.js');
 var jeo = require('./bots/jeo.js');
+var jeotest = require('./bots/jeotest.js');
 var deb = require('./db.js');
 var queen = require('./bots/queen.js');
 var meow = require('./bots/meow.js');
@@ -50,8 +51,8 @@ client.on("message", (message) => {
   }
 
     // Jeopardy question
-    else if (message.content.startsWith("!dbjeo")) {
-      deb(message);
+    else if (message.content.startsWith("!jeotest")) {
+      jeotest(message);
     }
 
     // Jeopardy question
