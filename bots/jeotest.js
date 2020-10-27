@@ -68,6 +68,22 @@ function jeootest(message) {
                       });
                       
                       client.connect();
+
+                      const checkUser = `
+                        SELECT *
+                        FROM jeopardy_test_points
+                        WHERE userid = ${collected.first().author.id})
+                        `;
+
+                    client.checkUser(query, (err, res) => {
+                        if (err) {
+                            console.error(err);
+                            return;
+                        }
+                        console.log(res);
+                        console.log('user exists maybe?');
+                        client.end();
+                      }); 
                       
                       const query = `
                       INSERT INTO jeopardy_test_points (userid, points)
