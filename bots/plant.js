@@ -28,7 +28,7 @@ function plant(message) {
 
                 var newAPIend = body.data[randomEntry].links.plant;
                 console.log(newAPIend);
-                var newAPIlink = "https://trefle.io/" + newAPIend + '?token=' + process.end.TREFLE_TOKEN;
+                var newAPIlink = "https://trefle.io/" + newAPIend + '?token=' + process.env.TREFLE_TOKEN;
                 // common_name
                 // scientific_name
                 // family_common_name
