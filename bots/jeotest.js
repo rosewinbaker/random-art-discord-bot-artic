@@ -80,11 +80,17 @@ function jeootest(message) {
                             console.error(err);
                             return;
                         }
-                        console.log(res);
-                        
+
                         console.log("Row count is: " + res.rowCount);
 
-                        console.log('user exists maybe?');
+                        if (res.rowCount == 1) {
+                            console.log("User exists. Updating table with points.")
+                            const query = `
+                                INSERT INTO jeopardy_test_points (userid, points)
+                                VALUES (${collected.first().author.id}, ${value})
+                            `;
+                        }
+
                         client.end();
                       }); 
                       

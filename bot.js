@@ -13,6 +13,7 @@ var queen = require('./bots/queen.js');
 var meow = require('./bots/meow.js');
 var newart = require('./bots/newart.js');
 var xkcd = require('./bots/xkcd.js');
+var plant = require('./bots/plant.js');
 // import { imageDataURL } from "./bots/newart.js";
 const { createCanvas, loadImage } = require('canvas')
 const canvas = createCanvas(50, 50)
@@ -63,6 +64,12 @@ client.on("message", (message) => {
     // xkcd comic
     else if (message.content.startsWith("!xkcd")) {
       xkcd(message);
+    }
+
+
+    // plant
+    else if (message.content.startsWith("!plant")) {
+      plant(message);
     }
 
   // gen art question
