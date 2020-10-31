@@ -1,4 +1,5 @@
 const request = require('request');
+const Discord = require("discord.js");
 
 function plant(message) {
 
@@ -24,6 +25,23 @@ function plant(message) {
                 var randomEntry = Math.floor(Math.random() * Math.floor(body.data.length));
                 console.log("Random entry: " + randomEntry);
                 console.log("Plant ID: " + body.data[randomEntry].id);
+
+                var newAPIend = body.data[randomEntry].links.plant;
+                console.log(newAPIend);
+                var newAPIlink = "https://trefle.io/" + newAPIend + '?token=' + process.end.TREFLE_TOKEN;
+                // common_name
+                // scientific_name
+                // family_common_name
+                // image_url
+                // synonyms[]
+                // genus
+                // family 
+
+                request(newAPIlink, { json: true }, (err, res, body) => {
+                    if (err) { return console.log(err); }
+                    message.channel.send(body.data.scientific_name);
+
+            });
 
         };
 
