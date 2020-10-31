@@ -2,7 +2,7 @@ const request = require('request');
 
 function plant(message) {
 
-    request('https://trefle.io/api/v1/plants?token=' + TREFLE_TOKEN, { json: true }, (err, res, body) => {
+    request('https://trefle.io/api/v1/plants?token=' + process.env.TREFLE_TOKEN, { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
         var totalPagesLink = body.links.last
@@ -16,7 +16,7 @@ function plant(message) {
         var randomPage = Math.floor(Math.random() * totalPageNumber) + 1;
         console.log("Random page: " + randomPage);
         
-        request('https://trefle.io/api/v1/plants?token=' + TREFLE_TOKEN + '&page=' + randomPage, { json: true }, (err, res, body) => {
+        request('https://trefle.io/api/v1/plants?token=' + process.env.TREFLE_TOKEN + '&page=' + randomPage, { json: true }, (err, res, body) => {
             if (err) { return console.log(err); }
         
             function generatePlant() {
