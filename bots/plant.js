@@ -40,7 +40,7 @@ function plant(message) {
 
                 request(newAPIlink, { json: true }, (err, res, body) => {
                     if (err) { return console.log(err); }
-                    message.channel.send(body.data.scientific_name);
+                    // message.channel.send(body.data.scientific_name);
 
                     const embed = new Discord.MessageEmbed()
 
@@ -56,21 +56,21 @@ function plant(message) {
                         console.log("hey that common_name is null");
                         }
                         else {
-                        embed.addField("Common Name", body.data.main_species.common_name, true)
+                        embed.addField("Common Name", body.data.main_species.common_name)
                         } 
 
                     if (body.data.main_species.family_common_name === null) {
                         console.log("hey that family_common_name is null");
                         }
                         else {
-                        embed.addField("Family Common Name", body.data.main_species.family_common_name, true)
+                        embed.addField("Family Common Name", body.data.main_species.family_common_name)
                         } 
 
                     if (body.data.main_species.scientific_name === null) {
                         console.log("hey that scientific_name is null");
                         }
                         else {
-                        embed.addField("Scientific Name", body.data.main_species.scientific_name, true)
+                        embed.addField("Scientific Name", body.data.main_species.scientific_name)
                         } 
                     
                     if (body.data.main_species.genus === null) {
