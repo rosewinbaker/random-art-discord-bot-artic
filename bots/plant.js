@@ -23,7 +23,7 @@ function plant(message) {
 
                 var randomEntry = Math.floor(Math.random() * Math.floor(body.data.length));
                 console.log("Random entry: " + randomEntry);
-                // console.log("Plant ID: " + body[randomEntry].data.id);
+                console.log("Plant ID: " + body.data[randomEntry].id);
 
         };
 
