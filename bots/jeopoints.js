@@ -88,7 +88,6 @@ function jeootest(message) {
                             const query = `
                                 UPDATE jeopardy_test_points SET points = points + ${value} WHERE userid = ${collected.first().author.id};
                             `;
-                            
                         }
 
                         else {
@@ -98,15 +97,6 @@ function jeootest(message) {
                                 VALUES (${collected.first().author.id}, ${value})
                             `;
                         }
-
-                        client.query(query, (err, res) => {
-                            if (err) {
-                                console.error(err);
-                                return;
-                            }
-                            
-                            console.log(res);
-
 
                         client.end();
                       }); 
