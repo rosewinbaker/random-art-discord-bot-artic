@@ -88,6 +88,15 @@ function jeootest(message) {
                             const query = `
                                 UPDATE jeopardy_test_points SET points = points + ${value} WHERE userid = ${collected.first().author.id};
                             `;
+                            client.query(query, (err, res) => {
+                                if (err) {
+                                    console.error(err);
+                                    return;
+                                }
+                                
+                                console.log(res);
+    
+                            })
                             
                         }
 
@@ -97,17 +106,18 @@ function jeootest(message) {
                                 INSERT INTO jeopardy_test_points (userid, points)
                                 VALUES (${collected.first().author.id}, ${value})
                             `;
+                            client.query(query, (err, res) => {
+                                if (err) {
+                                    console.error(err);
+                                    return;
+                                }
+                                
+                                console.log(res);
+    
+                            })
                         }
 
-                        client.query(query, (err, res) => {
-                            if (err) {
-                                console.error(err);
-                                return;
-                            }
-                            
-                            console.log(res);
-
-                        })
+                       
                             
 
 
