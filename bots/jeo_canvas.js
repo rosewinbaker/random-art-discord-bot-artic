@@ -62,6 +62,55 @@ function jeo(message) {
                 { name: 'Q ID', value: qID, inline: true },
             )
 
+        // channel.send(exampleEmbed);
+
+            
+
+        // // Create canvas with Jeopardy style text
+        // const { createCanvas } = require('canvas')
+        // const canvas = createCanvas(500, 500)
+        // const ctx = canvas.getContext('2d')
+        // ctx.fillStyle = '#060CE9';
+        // ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // // Pass the entire Canvas object because you'll need to access its width, as well its context
+        // const applyText = (canvas, text) => {
+
+        //     // Declare a base size of the font
+        //     let fontSize = 70;
+
+        //     do {
+        //         // Assign the font to the context and decrement it so it can be measured again
+        //         ctx.font = `${fontSize -= 10}px sans-serif`;
+        //         // Compare pixel width of the text to the canvas minus the approximate avatar size
+        //     } while (ctx.measureText(text).width > canvas.width - 300);
+
+        //     // Return the result to use in the actual canvas
+        //     return ctx.font;
+        // };
+
+    
+        // ctx.fillStyle = 'white';
+        // ctx.textAlign = "center";
+        // ctx.font = '50 px Helvetica';
+
+        // // Add an exclamation point here and below
+        // // ctx.font = applyText(canvas, question);
+        // ctx.fillStyle = '#ffffff';
+        // ctx.fillText(`${question}!`, canvas.width / 2.5, canvas.height / 1.8);
+
+
+        // // ctx.fillText(question, canvas.width / 2, canvas.height / 2);
+
+        // const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'jeopardy.png');
+
+        // message.channel.send(attachment);
+
+
+        // message.channel.send(categoryMessage + " - originally aired " + finalAirDate);
+        // message.channel.send(question);
+        // message.channel.send(answer);
+
         console.log("Category message: " + categoryMessage);
         console.log("Question: " + question);
         console.log("Answer: " + answer);
@@ -69,6 +118,11 @@ function jeo(message) {
         console.log("Airdate: " + airDate)
 
         const filter = message => message.content.includes(answer);
+        // const filter = message => message.content.includes("wtf");
+
+        // const filter = response => {
+        //     return (answer => answer.toLowerCase() === response.content.toLowerCase());
+        // };
 
         message.channel.send(exampleEmbed).then(() => {
             message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
@@ -137,11 +191,25 @@ function jeo(message) {
                     client.end();
                   }); 
                   
+                //   const query = `
+                //   INSERT INTO jeopardy_test_points (userid, points)
+                //   VALUES (${collected.first().author.id}, ${value})
+                //   `;
+                  
+                //   client.query(query, (err, res) => {
+                //     if (err) {
+                //         console.error(err);
+                //         return;
+                //     }
+                //     console.log('Data was inserted successfully');
+                //     client.end();
+                //   });
+
+
+
             })
             .catch(collected => {
                 message.channel.send('Looks like nobody got the answer this time. Correct answer: ' + answer);
-                message.channel.send("Here's a cute cat for your troubles: ");
-                message.channel.send("!meow");
             });
 
 
