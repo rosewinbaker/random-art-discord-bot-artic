@@ -14,6 +14,7 @@ var meow = require('./bots/meow.js');
 var newart = require('./bots/newart.js');
 var xkcd = require('./bots/xkcd.js');
 var plant = require('./bots/plant.js');
+var pointsjeo = require('./bots/jeopoints.js');
 // import { imageDataURL } from "./bots/newart.js";
 const { createCanvas, loadImage } = require('canvas')
 const canvas = createCanvas(50, 50)
@@ -56,10 +57,17 @@ client.on("message", (message) => {
       jeotest(message);
     }
 
+
+    // plant
+    else if (message.content.startsWith("!pointsjeo")) {
+      pointsjeo(message);
+    }
+
     // Jeopardy question
     else if (message.content.startsWith("!queen")) {
       queen(message);
     }
+    
 
     // xkcd comic
     else if (message.content.startsWith("!xkcd")) {

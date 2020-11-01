@@ -117,10 +117,6 @@ function jeootest(message) {
                             })
                         }
 
-                       
-                            
-
-
                         client.end();
                       }); 
                       
