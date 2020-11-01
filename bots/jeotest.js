@@ -86,6 +86,13 @@ function jeootest(message) {
                         if (res.rowCount == 1) {
                             console.log("User exists. Updating table with points.")
                             const query = `
+                                UPDATE jeopardy_test_points SET points = points + ${value} WHERE userid = ${collected.first().author.id};
+                            `;
+                        }
+
+                        else {
+                            console.log("Did not find existing user. Adding new user entry now for " + `${collected.first().author.id}`)
+                            const query = `
                                 INSERT INTO jeopardy_test_points (userid, points)
                                 VALUES (${collected.first().author.id}, ${value})
                             `;
@@ -94,19 +101,19 @@ function jeootest(message) {
                         client.end();
                       }); 
                       
-                      const query = `
-                      INSERT INTO jeopardy_test_points (userid, points)
-                      VALUES (${collected.first().author.id}, ${value})
-                      `;
+                    //   const query = `
+                    //   INSERT INTO jeopardy_test_points (userid, points)
+                    //   VALUES (${collected.first().author.id}, ${value})
+                    //   `;
                       
-                      client.query(query, (err, res) => {
-                        if (err) {
-                            console.error(err);
-                            return;
-                        }
-                        console.log('Data was inserted successfully');
-                        client.end();
-                      });
+                    //   client.query(query, (err, res) => {
+                    //     if (err) {
+                    //         console.error(err);
+                    //         return;
+                    //     }
+                    //     console.log('Data was inserted successfully');
+                    //     client.end();
+                    //   });
 
 
 
