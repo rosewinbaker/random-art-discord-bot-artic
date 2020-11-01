@@ -74,77 +74,82 @@ function jeo(message) {
       message.channel
         .awaitMessages(filter, { max: 1, time: 60000, errors: ["time"] })
         .then(collected => {
-          message.channel.send(
-            `${collected.first().author} got the correct answer! ` + answer
-          );
-          message.channel.send(
-            `${value} to ${collected.first().author}. You go, ${
-              collected.first().author
-            }!`
-          );
-          console.log(
-            `${collected.first().author.id} got the correct answer! `
-          );
+        //   message.channel.send(
+        //     `${collected.first().author} got the correct answer! ` + answer
+        //   );
+        //   message.channel.send(
+        //     `${value} to ${collected.first().author}. You go, ${
+        //       collected.first().author
+        //     }!`
+        //   );
+        //   console.log(
+        //     `${collected.first().author.id} got the correct answer! `
+        //   );
 
-          const client = new Client({
-            connectionString: process.env.DATABASE_URL
-            // ssl: {
-            //   rejectUnauthorized: false
-            // }
-          });
+        //   const client = new Client({
+        //     connectionString: process.env.DATABASE_URL
+        //     // ssl: {
+        //     //   rejectUnauthorized: false
+        //     // }
+        //   });
 
-          client.connect();
+        //   client.connect();
 
-          const checkUser = `
-                    SELECT *
-                    FROM jeopardy_test_points
-                    WHERE userid = ${collected.first().author.id}
-                    `;
+        //   const checkUser = `
+        //             SELECT *
+        //             FROM jeopardy_test_points
+        //             WHERE userid = ${collected.first().author.id}
+        //             `;
 
-          client.query(checkUser, (err, res) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
+        //   client.query(checkUser, (err, res) => {
+        //     if (err) {
+        //       console.error(err);
+        //       return;
+        //     }
 
-            console.log("Row count is: " + res.rowCount);
+        //     console.log("Row count is: " + res.rowCount);
 
-            if (res.rowCount == 1) {
-              console.log("User exists. Updating table with points.");
-              const query = `
-                            UPDATE jeopardy_test_points SET points = points + ${value} WHERE userid = ${
-                collected.first().author.id
-              };
-                        `;
-              client.query(query, (err, res) => {
-                if (err) {
-                  console.error(err);
-                  return;
-                }
+        //     if (res.rowCount == 1) {
+        //       console.log("User exists. Updating table with points.");
+        //       const query = `
+        //                     UPDATE jeopardy_test_points SET points = points + ${value} WHERE userid = ${
+        //         collected.first().author.id
+        //       };
+        //                 `;
+        //       client.query(query, (err, res) => {
+        //         if (err) {
+        //           console.error(err);
+        //           return;
+        //         }
 
-                console.log(res);
-              });
-            } else {
-              console.log(
-                "Did not find existing user. Adding new user entry now for " +
-                  `${collected.first().author.id}`
-              );
-              const query = `
-                            INSERT INTO jeopardy_test_points (userid, points)
-                            VALUES (${collected.first().author.id}, ${value})
-                        `;
-              client.query(query, (err, res) => {
-                if (err) {
-                  console.error(err);
-                  return;
-                }
+        //         console.log(res);
+        //       });
+        //     } else {
+        //       console.log(
+        //         "Did not find existing user. Adding new user entry now for " +
+        //           `${collected.first().author.id}`
+        //       );
+        //       const query = `
+        //                     INSERT INTO jeopardy_test_points (userid, points)
+        //                     VALUES (${collected.first().author.id}, ${value})
+        //                 `;
+        //       client.query(query, (err, res) => {
+        //         if (err) {
+        //           console.error(err);
+        //           return;
+        //         }
 
-                console.log(res);
-              });
-            }
+        //         console.log(res);
+        //       });
+        //     }
 
-            client.end();
-          });
+        //     client.end();
+        //   });
+
+
+              message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
+              console.log(`${collected.first().author.id} got the correct answer! `)
+
         })
         .catch(collected => {
           message.channel.send(
