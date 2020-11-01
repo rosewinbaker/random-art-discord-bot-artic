@@ -14,7 +14,7 @@ function pointsjeo(message) {
             SELECT * FROM jeopardy_test_points;
         `;
 
-        client.query(query, (err, res) => {
+        await client.query(query, (err, res) => {
             if (err) {
                 console.error(err);
                 return;
