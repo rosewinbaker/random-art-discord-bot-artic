@@ -73,7 +73,7 @@ function buildJeoQuestion() {
 
 
 
-function jeo(message) {
+function jeo(message, exampleEmbed) {
 
     buildJeoQuestion();
 
