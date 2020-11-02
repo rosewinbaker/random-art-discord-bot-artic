@@ -59,7 +59,9 @@ function newart(message) {
     gradient.addColorStop(5 / 6, c6);
     gradient.addColorStop(1, c7);
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "30px Verdana";
+    ctx.fillText("oowoOWOWOw", 10, 90);
 
 
 
