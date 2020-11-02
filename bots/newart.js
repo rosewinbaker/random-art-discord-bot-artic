@@ -30,7 +30,6 @@ function newart(message) {
     let c5 = getRandomColor();
     let c6 = getRandomColor();
     let c7 = getRandomColor();
-    let c8 = getRandomColor();
 
 
 
@@ -53,12 +52,12 @@ function newart(message) {
     // const randomColor = Math.floor(Math.random()*16777215).toString(16);
 
     gradient.addColorStop(0, c1);
-    gradient.addColorStop(1 / 6, "orange");
-    gradient.addColorStop(2 / 6, "yellow");
-    gradient.addColorStop(3 / 6, "green");
-    gradient.addColorStop(4 / 6, "blue");
-    gradient.addColorStop(5 / 6, "indigo");
-    gradient.addColorStop(1, "violet");
+    gradient.addColorStop(1 / 6, c2);
+    gradient.addColorStop(2 / 6, c3);
+    gradient.addColorStop(3 / 6, c4);
+    gradient.addColorStop(4 / 6, c5);
+    gradient.addColorStop(5 / 6, c6);
+    gradient.addColorStop(1, c7);
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
