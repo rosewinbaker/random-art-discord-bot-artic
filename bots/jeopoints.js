@@ -24,13 +24,21 @@ function pointsjeo(message) {
         //     }
 
             // async/await
-        try {
-            const res = await client.query(query)
-            console.log(res.rows[0])
-            // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
-        } catch (err) {
-            console.log(err.stack)
-        }
+        // try {
+        //     const res = await client.query(query)
+        //     console.log(res.rows[0])
+        //     // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+        // } catch (err) {
+        //     console.log(err.stack)
+        // }
+
+        client
+            .query(query)
+            .then(res => {
+                console.log(res.rows[0])
+                // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+            })
+            .catch(e => console.error(e.stack))
             
             
 
