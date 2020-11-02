@@ -48,7 +48,7 @@ function pointsjeo(message) {
             //     };
         //   }
           
-        console.log("Response is: " + res.rows[1].userid);
+        // console.log("Response is: " + res.rows[0].userid);
 
         client.end()
     });
