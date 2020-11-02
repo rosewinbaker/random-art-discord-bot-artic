@@ -112,15 +112,15 @@ function jeo(message) {
       categoryMessage = "Category is '" + titleCase(category) + "'" + addMoney;
     }
 
-    const exampleEmbed = new Discord.MessageEmbed()
-      .setTitle(question)
-      .setURL("https://discord.js.org/")
-      .setDescription(categoryMessage)
-      .addFields(
-        { name: "Airdate", value: finalAirDate, inline: true },
-        { name: "Category ID", value: catNum, inline: true },
-        { name: "Q ID", value: qID, inline: true }
-      );
+    // const exampleEmbed = new Discord.MessageEmbed()
+    //   .setTitle(question)
+    //   .setURL("https://discord.js.org/")
+    //   .setDescription(categoryMessage)
+    //   .addFields(
+    //     { name: "Airdate", value: finalAirDate, inline: true },
+    //     { name: "Category ID", value: catNum, inline: true },
+    //     { name: "Q ID", value: qID, inline: true }
+    //   );
 
     console.log("Category message: " + categoryMessage);
     console.log("Question: " + question);
