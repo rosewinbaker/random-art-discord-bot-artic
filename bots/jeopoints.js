@@ -27,7 +27,7 @@ function pointsjeo(message) {
         console.log("numEntries: " + numEntries)
 
         var i;
-        for (i = 0; i < numEntries.length; i++) {
+        for (i = 0; i < numEntries; i++) {
             discordMessage = res.rows[1].userid + " has " + res.rows[1].points + " points. Nice, dude."
             console.log(discordMessage);
             message.channel.send(discordMessage);
