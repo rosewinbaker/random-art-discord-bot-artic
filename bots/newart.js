@@ -6,13 +6,32 @@ const ctx = canvas.getContext('2d')
 function newart(message) {
     var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
 
-    function getRandomColour(){
-        var red = Math.floor(Math.random()* 255);
-        var green = Math.floor(Math.random() * 255);
-        var blue = Math.floor(Math.random() * 255);
+    // function getRandomColour(){
+    //     var red = Math.floor(Math.random()* 255);
+    //     var green = Math.floor(Math.random() * 255);
+    //     var blue = Math.floor(Math.random() * 255);
       
-        return "rgb("+red+","+green+"," +blue+" )";  
+    //     return "rgb("+red+","+green+"," +blue+" )";  
+    //   }
+
+    function getRandomColor() {
+      let letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
       }
+      return color;
+    }
+
+    let c1 = getRandomColor();
+    let c2 = getRandomColor();
+    let c3 = getRandomColor();
+    let c4 = getRandomColor();
+    let c5 = getRandomColor();
+    let c6 = getRandomColor();
+    let c7 = getRandomColor();
+    let c8 = getRandomColor();
+
 
 
     // getRandomColour()
@@ -31,9 +50,9 @@ function newart(message) {
     // let c7  = Math.floor(Math.random()* 255)
     // getRandomColour()
 
-    const randomColor = "'" + Math.floor(Math.random()*16777215).toString(16) + "'";
+    // const randomColor = Math.floor(Math.random()*16777215).toString(16);
 
-    gradient.addColorStop(0, randomColor);
+    gradient.addColorStop(0, c1);
     gradient.addColorStop(1 / 6, "orange");
     gradient.addColorStop(2 / 6, "yellow");
     gradient.addColorStop(3 / 6, "green");
