@@ -1,6 +1,6 @@
 const { Pool, Client } = require('pg');
 
-async function pointsjeo(message) {
+function pointsjeo(message) {
     const pool = new Pool()
 
     pool.query('SELECT * FROM jeopardy_test_points', [1], (err, res) => {
@@ -12,7 +12,7 @@ async function pointsjeo(message) {
 
 
     console.log('calling end')
-    await pool.end()
+    pool.end()
     console.log('pool has drained')
 
 
