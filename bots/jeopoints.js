@@ -23,6 +23,13 @@ function pointsjeo(message) {
             return;
         }
 
+        var numEntries = res.rowCount;
+
+        var i;
+        for (i = 0; i < numEntries.length; i++) {
+            message.channel.send(res.rows[1].userid + " has " + res.rows[1].points + " points. Nice, dude.");
+          }
+          
         console.log("Response is: " + res.rows[1].userid);
 
         client.end()
