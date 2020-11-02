@@ -130,7 +130,7 @@ function jeo(message) {
 
     const filter = message => message.content.includes(answer.toLowerCase());
 
-    message.channel.send(exampleEmbed).then(() => {
+    message.channel.send(question).then(() => {
       message.channel
         .awaitMessages(filter, { max: 1, time: 60000, errors: ["time"] })
         .then(collected => {
