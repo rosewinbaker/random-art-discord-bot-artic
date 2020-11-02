@@ -17,7 +17,7 @@ function pointsjeo(message) {
       const checkPoints = `
         SELECT *
         FROM jeopardy_test_points
-        WHERE userid = 249565807288254474
+        WHERE userid = ${collected.first().author.id}
         `;
 
     client.query(checkPoints, (err, res) => {
