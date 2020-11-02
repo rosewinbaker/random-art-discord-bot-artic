@@ -15,6 +15,7 @@ function pointsjeo(message) {
       const checkPoints = `
         SELECT *
         FROM jeopardy_test_points
+        WHERE userid = ${user.id}
         `;
 
     client.query(checkPoints, (err, res) => {
@@ -23,25 +24,27 @@ function pointsjeo(message) {
             return;
         }
 
-        var numEntries = res.rowCount;
-        console.log("numEntries: " + numEntries)
+        message.channel.send(`${user.username}` + ": $" + res.rows[i].points);
 
-        var i;
-        for (i = 0; i < numEntries; i++) {
-        //     var myuser = "'" + res.rows[i].userid + "'"
-        //     const User = client.users.fetch(myuser);
-            discordMessage = res.rows[i].userid + ":  $" + res.rows[i].points;
-            console.log(discordMessage);
-            message.channel.send(discordMessage);
+        // var numEntries = res.rowCount;
+        // console.log("numEntries: " + numEntries)
+
+        // var i;
+        // for (i = 0; i < numEntries; i++) {
+        // //     var myuser = "'" + res.rows[i].userid + "'"
+        // //     const User = client.users.fetch(myuser);
+        //     discordMessage = <@! + res.rows[i].userid + > + ":  $" + res.rows[i].points;
+        //     console.log(discordMessage);
+        //     message.channel.send(discordMessage);
 
 
-            const User = client.users.cache.get(res.rows[i].userid); // Getting the user by ID.
-                if (User) { // Checking if the user exists.
-                    message.channel.send(User.tag) // The user exists.
-                } else {
-                    message.channel.send("User not found.") // The user doesn't exists or the bot couldn't find him.
-                };
-          }
+            // const User = client.users.cache.get(res.rows[i].userid); // Getting the user by ID.
+            //     if (User) { // Checking if the user exists.
+            //         message.channel.send(User.tag) // The user exists.
+            //     } else {
+            //         message.channel.send("User not found.") // The user doesn't exists or the bot couldn't find him.
+            //     };
+        //   }
           
         console.log("Response is: " + res.rows[1].userid);
 
