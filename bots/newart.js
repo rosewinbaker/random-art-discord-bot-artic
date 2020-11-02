@@ -31,7 +31,7 @@ function newart(message) {
     // let c7  = Math.floor(Math.random()* 255)
     // getRandomColour()
 
-    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+    const randomColor = "'" + Math.floor(Math.random()*16777215).toString(16) + "'";
 
     gradient.addColorStop(0, randomColor);
     gradient.addColorStop(1 / 6, "orange");
