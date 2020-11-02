@@ -13,84 +13,122 @@ function titleCase(str) {
   return splitStr.join(" ");
 }
 
-function buildJeoQuestion() {
-    request("http://jservice.io/api/random", { json: true }, (err, res, body) => {
-        if (err) {
-          return console.log(err);
-        }
-
-        var cleanAnswer = (body[0].answer).replace(/(<([^>]+)>)/gi, "");
-        var lowerAnswer = cleanAnswer.toLowerCase();
-
-        var questionObject = {
-            question: body[0].question,
-            answer: lowerAnswer,
-            value: body[0].value,
-            catNum: body[0].category.id,
-            qID: body[0].id,
-            airDate: body[0].airdate
-        }
+// function buildJeoQuestion() {
+//     request("http://jservice.io/api/random", { json: true }, (err, res, body) => {
+//         if (err) {
+//           return console.log(err);
+//         }
     
-        // var question = body[0].question;
-        // var answer = cleananswer.toLowerCase();
-        // var category = body[0].category.title;
-        // var value = body[0].value;
-        // var catNum = body[0].category.id;
-        // var qID = body[0].id;
-        // var airDate = body[0].airdate;
+//         var question = body[0].question;
+//         var cleananswer = (body[0].answer).replace(/(<([^>]+)>)/gi, "");
+//         var answer = cleananswer.toLowerCase();
+//         var category = body[0].category.title;
+//         var value = body[0].value;
+//         var catNum = body[0].category.id;
+//         var qID = body[0].id;
+//         var airDate = body[0].airdate;
     
-        var addMoney;
-        var categoryMessage;
+//         var addMoney;
+//         var categoryMessage;
     
-        date = new Date(airDate);
-        year = date.getFullYear();
-        month = date.getMonth() + 1;
-        dt = date.getDate();
+//         date = new Date(airDate);
+//         year = date.getFullYear();
+//         month = date.getMonth() + 1;
+//         dt = date.getDate();
     
-        if (dt < 10) {
-          dt = "0" + dt;
-        }
-        if (month < 10) {
-          month = "0" + month;
-        }
+//         if (dt < 10) {
+//           dt = "0" + dt;
+//         }
+//         if (month < 10) {
+//           month = "0" + month;
+//         }
     
-        finalAirDate = year + "-" + month + "-" + dt;
+//         finalAirDate = year + "-" + month + "-" + dt;
     
-        if (value === null) {
-          console.log("hey that value is null");
-          categoryMessage = "Category is '" + titleCase(category) + "'";
-        } else {
-          addMoney = " for $" + value;
-          categoryMessage = "Category is '" + titleCase(category) + "'" + addMoney;
-        }
+//         if (value === null) {
+//           console.log("hey that value is null");
+//           categoryMessage = "Category is '" + titleCase(category) + "'";
+//         } else {
+//           addMoney = " for $" + value;
+//           categoryMessage = "Category is '" + titleCase(category) + "'" + addMoney;
+//         }
     
+//         const exampleEmbed = new Discord.MessageEmbed()
+//           .setTitle(question)
+//           .setURL("https://discord.js.org/")
+//           .setDescription(categoryMessage)
+//           .addFields(
+//             { name: "Airdate", value: finalAirDate, inline: true },
+//             { name: "Category ID", value: catNum, inline: true },
+//             { name: "Q ID", value: qID, inline: true }
+//           );
+    
+//         console.log("Category message: " + categoryMessage);
+//         console.log("Question: " + question);
+//         console.log("Answer: " + answer);
+//         console.log("Category number: " + catNum);
+//         console.log("Airdate: " + airDate);
+// }
 
-    })
-};
 
 
+function jeo(message) {
+  request("http://jservice.io/api/random", { json: true }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
 
-function jeo(message, questionObject, addMoney, categoryMessage, finalAirDate) {
+    var question = body[0].question;
+    var cleananswer = (body[0].answer).replace(/(<([^>]+)>)/gi, "");
+    var answer = cleananswer.toLowerCase();
+    var category = body[0].category.title;
+    var value = body[0].value;
+    var catNum = body[0].category.id;
+    var qID = body[0].id;
+    var airDate = body[0].airdate;
 
-    buildJeoQuestion();
+    var addMoney;
+    var categoryMessage;
 
-        const exampleEmbed = new Discord.MessageEmbed()
-        .setTitle(questionObject.question)
-        .setURL("https://discord.js.org/")
-        .setDescription(categoryMessage)
-        .addFields(
+    date = new Date(airDate);
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    dt = date.getDate();
+
+    if (dt < 10) {
+      dt = "0" + dt;
+    }
+    if (month < 10) {
+      month = "0" + month;
+    }
+
+    finalAirDate = year + "-" + month + "-" + dt;
+
+    if (value === null) {
+      console.log("hey that value is null");
+      categoryMessage = "Category is '" + titleCase(category) + "'";
+    } else {
+      addMoney = " for $" + value;
+      categoryMessage = "Category is '" + titleCase(category) + "'" + addMoney;
+    }
+
+    const exampleEmbed = new Discord.MessageEmbed()
+      .setTitle(question)
+      .setURL("https://discord.js.org/")
+      .setDescription(categoryMessage)
+      .addFields(
         { name: "Airdate", value: finalAirDate, inline: true },
-        { name: "Category ID", value: questionObject.catNum, inline: true },
-        { name: "Q ID", value: questionObject.qID, inline: true }
-        );
+        { name: "Category ID", value: catNum, inline: true },
+        { name: "Q ID", value: qID, inline: true }
+      );
 
     console.log("Category message: " + categoryMessage);
-    console.log("Question: " + questionObject.question);
-    console.log("Answer: " + questionObject.answer);
-    console.log("Category number: " + questionObject.catNum);
+    console.log("Question: " + question);
+    console.log("Answer: " + answer);
+    console.log("Category number: " + catNum);
     console.log("Airdate: " + airDate);
 
-    const filter = message => message.content.includes(questionObject.answer.toLowerCase());
+    const filter = message => message.content.includes(answer.toLowerCase());
 
     message.channel.send(exampleEmbed).then(() => {
       message.channel
@@ -199,6 +237,7 @@ function jeo(message, questionObject, addMoney, categoryMessage, finalAirDate) {
     //           message.channel.send("!meow");
     //       });
     });
-  };
+  });
+}
 
 module.exports = jeo;
