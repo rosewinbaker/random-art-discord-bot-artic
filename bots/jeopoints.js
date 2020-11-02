@@ -1,5 +1,7 @@
 const { Pool, Client } = require('pg');
 
+
+
 function pointsjeo(message) {
     // console.log("No points code working right now. Sorry.")
 
@@ -15,7 +17,7 @@ function pointsjeo(message) {
       const checkPoints = `
         SELECT *
         FROM jeopardy_test_points
-        // WHERE userid = 249565807288254474
+        WHERE userid = 249565807288254474
         `;
 
     client.query(checkPoints, (err, res) => {
