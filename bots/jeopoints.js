@@ -33,6 +33,14 @@ function pointsjeo(message) {
             discordMessage = res.rows[i].userid + ":  $" + res.rows[i].points;
             console.log(discordMessage);
             message.channel.send(discordMessage);
+
+
+            const User = client.users.cache.get(res.rows[i].userid); // Getting the user by ID.
+                if (User) { // Checking if the user exists.
+                    message.channel.send(User.tag) // The user exists.
+                } else {
+                    message.channel.send("User not found.") // The user doesn't exists or the bot couldn't find him.
+                };
           }
           
         console.log("Response is: " + res.rows[1].userid);
