@@ -1,6 +1,6 @@
 const { Pool, Client } = require('pg');
 
-function pointsjeo(message) {
+async function pointsjeo(message) {
     const pool = new Pool()
 
     pool.query('SELECT * FROM jeopardy_test_points', [1], (err, res) => {
