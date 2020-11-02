@@ -23,7 +23,8 @@ function jeotest(message) {
         var cleananswer = (body[0].answer).replace(/(<([^>]+)>)/gi, "");
         var answer = cleananswer.toLowerCase();
         var category = body[0].category.title
-        var value = body[0].value
+        // var value = body[0].value
+        var value = 5
         var catNum = body[0].category.id
         var qID = body[0].id;
         var airDate = body[0].airdate;
@@ -45,7 +46,9 @@ function jeotest(message) {
         
             finalAirDate = year + "-" + month + "-" + dt;
 
-        if (value === null) {
+            
+
+        if (value === 5) {
             console.log("hey that value is null");
             message.channel.send('https://media.giphy.com/media/2yvoIFyZghBDszbIk3/giphy.gif')
             categoryMessage = "Category is '" + titleCase(category) + "'";
