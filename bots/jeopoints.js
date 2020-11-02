@@ -24,10 +24,13 @@ function pointsjeo(message) {
         }
 
         var numEntries = res.rowCount;
+        console.log("numEntries: " + numEntries)
 
         var i;
         for (i = 0; i < numEntries.length; i++) {
-            message.channel.send(res.rows[1].userid + " has " + res.rows[1].points + " points. Nice, dude.");
+            discordMessage = res.rows[1].userid + " has " + res.rows[1].points + " points. Nice, dude."
+            console.log(discordMessage);
+            message.channel.send(discordMessage);
           }
           
         console.log("Response is: " + res.rows[1].userid);
