@@ -53,29 +53,31 @@ function buildJeoQuestion() {
           categoryMessage = "Category is '" + titleCase(category) + "'" + addMoney;
         }
     
-        const exampleEmbed = new Discord.MessageEmbed()
-          .setTitle(question)
-          .setURL("https://discord.js.org/")
-          .setDescription(categoryMessage)
-          .addFields(
-            { name: "Airdate", value: finalAirDate, inline: true },
-            { name: "Category ID", value: catNum, inline: true },
-            { name: "Q ID", value: qID, inline: true }
-          );
-    
-        console.log("Category message: " + categoryMessage);
-        console.log("Question: " + question);
-        console.log("Answer: " + answer);
-        console.log("Category number: " + catNum);
-        console.log("Airdate: " + airDate);
+
     })
 };
 
 
 
-function jeo(message, exampleEmbed) {
+function jeo(message) {
 
     buildJeoQuestion();
+
+        const exampleEmbed = new Discord.MessageEmbed()
+        .setTitle(question)
+        .setURL("https://discord.js.org/")
+        .setDescription(categoryMessage)
+        .addFields(
+        { name: "Airdate", value: finalAirDate, inline: true },
+        { name: "Category ID", value: catNum, inline: true },
+        { name: "Q ID", value: qID, inline: true }
+        );
+
+    console.log("Category message: " + categoryMessage);
+    console.log("Question: " + question);
+    console.log("Answer: " + answer);
+    console.log("Category number: " + catNum);
+    console.log("Airdate: " + airDate);
 
     const filter = message => message.content.includes(answer.toLowerCase());
 
