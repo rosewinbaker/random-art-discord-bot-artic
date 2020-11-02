@@ -101,16 +101,17 @@ function jeo(message) {
                     WHERE userid = ${collected.first().author.id}
                     `;
 
-        //   client.query(checkUser, (err, res) => {
-        //     if (err) {
-        //       console.error(err);
-        //       return;
-        //     }
+          client.query(checkUser, (err, res) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
 
-            // console.log("Row count is: " + res.rowCount);
+            console.log("Row count is: " + res.rowCount);
+        });
 
         client.end();
-          })
+          
 
         //     if (res.rowCount == 1) {
         //       console.log("User exists. Updating table with points.");
