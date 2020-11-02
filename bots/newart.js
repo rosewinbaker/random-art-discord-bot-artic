@@ -15,23 +15,25 @@ function newart(message) {
       }
 
 
-    getRandomColour()
-    let c1 = Math.floor(Math.random()* 255)
-    getRandomColour()
-    let c2 = Math.floor(Math.random()* 255)
-    getRandomColour()
-    let c3  = Math.floor(Math.random()* 255)
-    getRandomColour()
-    let c4  = Math.floor(Math.random()* 255)
-    getRandomColour()
-    let c5  = Math.floor(Math.random()* 255)
-    getRandomColour()
-    let c6  = Math.floor(Math.random()* 255)
-    getRandomColour()
-    let c7  = Math.floor(Math.random()* 255)
-    getRandomColour()
+    // getRandomColour()
+    // let c1 = Math.floor(Math.random()* 255)
+    // getRandomColour()
+    // let c2 = Math.floor(Math.random()* 255)
+    // getRandomColour()
+    // let c3  = Math.floor(Math.random()* 255)
+    // getRandomColour()
+    // let c4  = Math.floor(Math.random()* 255)
+    // getRandomColour()
+    // let c5  = Math.floor(Math.random()* 255)
+    // getRandomColour()
+    // let c6  = Math.floor(Math.random()* 255)
+    // getRandomColour()
+    // let c7  = Math.floor(Math.random()* 255)
+    // getRandomColour()
 
-    gradient.addColorStop(0, rgb(255, 255, 0));
+    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+
+    gradient.addColorStop(0, randomColor);
     gradient.addColorStop(1 / 6, "orange");
     gradient.addColorStop(2 / 6, "yellow");
     gradient.addColorStop(3 / 6, "green");
