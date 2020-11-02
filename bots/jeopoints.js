@@ -1,19 +1,21 @@
 const { Pool, Client } = require('pg');
 
 function pointsjeo(message) {
-    const pool = new Pool()
+    console.log("No points code working right now. Sorry.")
 
-    pool.query('SELECT * FROM jeopardy_test_points', [1], (err, res) => {
-        if (err) {
-          throw err
-        }
-        console.log('user:', res.rows[0])
-      })
+    // const pool = new Pool()
+
+    // pool.query('SELECT * FROM jeopardy_test_points', [1], (err, res) => {
+    //     if (err) {
+    //       throw err
+    //     }
+    //     console.log('user:', res.rows[0])
+    //   })
 
 
-    console.log('calling end')
-    pool.end()
-    console.log('pool has drained')
+    // console.log('calling end')
+    // pool.end()
+    // console.log('pool has drained')
 
 
 
