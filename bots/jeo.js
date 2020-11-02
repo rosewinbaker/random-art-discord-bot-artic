@@ -7,7 +7,9 @@ function jeo(message) {
         if (err) { return console.log(err); }
 
         var question = body[0].question
-        var answer = titleCase(body[0].answer).replace( /(<([^>]+)>)/ig, '');
+        // var answer = titleCase(body[0].answer).replace( /(<([^>]+)>)/ig, '');
+        var cleananswer = (body[0].answer).replace(/(<([^>]+)>)/gi, "");
+        var answer = cleananswer.toLowerCase();
         var category = body[0].category.title
         var value = body[0].value
         var catNum = body[0].category.id
