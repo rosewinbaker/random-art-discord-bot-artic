@@ -74,40 +74,42 @@ function jeo(message) {
       message.channel
         .awaitMessages(filter, { max: 1, time: 60000, errors: ["time"] })
         .then(collected => {
-        //   message.channel.send(
-        //     `${collected.first().author} got the correct answer! ` + answer
-        //   );
-        //   message.channel.send(
-        //     `${value} to ${collected.first().author}. You go, ${
-        //       collected.first().author
-        //     }!`
-        //   );
-        //   console.log(
-        //     `${collected.first().author.id} got the correct answer! `
-        //   );
+          message.channel.send(
+            `${collected.first().author} got the correct answer! ` + answer
+          );
+          message.channel.send(
+            `${value} to ${collected.first().author}. You go, ${
+              collected.first().author
+            }!`
+          );
+          console.log(
+            `${collected.first().author.id} got the correct answer! `
+          );
 
-        //   const client = new Client({
-        //     connectionString: process.env.DATABASE_URL
-        //     // ssl: {
-        //     //   rejectUnauthorized: false
-        //     // }
-        //   });
+          const client = new Client({
+            connectionString: process.env.DATABASE_URL
+            // ssl: {
+            //   rejectUnauthorized: false
+            // }
+          });
 
-        //   client.connect();
+          client.connect();
 
-        //   const checkUser = `
-        //             SELECT *
-        //             FROM jeopardy_test_points
-        //             WHERE userid = ${collected.first().author.id}
-        //             `;
+          const checkUser = `
+                    SELECT *
+                    FROM jeopardy_test_points
+                    WHERE userid = ${collected.first().author.id}
+                    `;
 
-        //   client.query(checkUser, (err, res) => {
-        //     if (err) {
-        //       console.error(err);
-        //       return;
-        //     }
+          client.query(checkUser, (err, res) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
 
-        //     console.log("Row count is: " + res.rowCount);
+            console.log("Row count is: " + res.rowCount);
+
+        client.end();
 
         //     if (res.rowCount == 1) {
         //       console.log("User exists. Updating table with points.");
@@ -147,8 +149,8 @@ function jeo(message) {
         //   });
 
 
-              message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
-              console.log(`${collected.first().author.id} got the correct answer! `)
+            //   message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
+            //   console.log(`${collected.first().author.id} got the correct answer! `)
 
         })
         .catch(collected => {
