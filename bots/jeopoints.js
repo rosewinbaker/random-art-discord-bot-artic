@@ -23,7 +23,7 @@ function pointsjeo(message) {
             return;
         }
 
-        console.log("Response is: " + res.body);
+        console.log("Response is: " + res.rows);
 
         client.end()
     });
