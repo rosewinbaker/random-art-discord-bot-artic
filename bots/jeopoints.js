@@ -12,13 +12,12 @@ function pointsjeo(message) {
       
       client.connect();
 
-      const checkUser = `
+      const checkPoints = `
         SELECT *
         FROM jeopardy_test_points
-        WHERE userid = ${collected.first().author.id}
         `;
 
-    client.query(checkUser, (err, res) => {
+    client.query(checkPoints, (err, res) => {
         if (err) {
             console.error(err);
             return;
