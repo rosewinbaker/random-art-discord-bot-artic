@@ -19,8 +19,11 @@ function pointsjeo(message) {
                 console.error(err);
                 return;
             }
+            else {
+                console.log(res.rows[0]);
+            }
             
-            console.log(res);
+            
 
         })
 
