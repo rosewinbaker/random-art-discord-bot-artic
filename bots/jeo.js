@@ -110,6 +110,7 @@ function jeo(message) {
             console.log("Row count is: " + res.rowCount);
 
         client.end();
+          })
 
         //     if (res.rowCount == 1) {
         //       console.log("User exists. Updating table with points.");
