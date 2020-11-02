@@ -28,7 +28,7 @@ function pointsjeo(message) {
 
         var i;
         for (i = 0; i < numEntries; i++) {
-            const User = Client.fetchUser(res.rows[i].userid);
+            const User = client.fetchUser(res.rows[i].userid);
             discordMessage = User + ":  $" + res.rows[i].points;
             console.log(discordMessage);
             message.channel.send(discordMessage);
