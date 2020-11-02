@@ -1,5 +1,6 @@
 const { Client } = require('pg');
 const request = require('request');
+const Discord = require("discord.js");
 
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
