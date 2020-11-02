@@ -1,7 +1,6 @@
 const { Client } = require('pg');
 const request = require('request');
-
-
+const Discord = require("discord.js");
 
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
@@ -14,30 +13,103 @@ function titleCase(str) {
     return splitStr.join(' '); 
  }
 
-function jeootest(message) {
+function jeotest(message) {
 
     request('http://jservice.io/api/random', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
         var question = body[0].question
-        var answer = titleCase(body[0].answer).replace( /(<([^>]+)>)/ig, '');
+        // var answer = titleCase(body[0].answer).replace( /(<([^>]+)>)/ig, '');
+        var cleananswer = (body[0].answer).replace(/(<([^>]+)>)/gi, "");
+        var answer = cleananswer.toLowerCase();
         var category = body[0].category.title
         var value = body[0].value
         var catNum = body[0].category.id
+        var qID = body[0].id;
+        var airDate = body[0].airdate;
 
         var addMoney;
         var categoryMessage;
 
+        date = new Date(airDate);
+            year = date.getFullYear();
+            month = date.getMonth() + 1;
+            dt = date.getDate();
+        
+            if (dt < 10) {
+                dt = "0" + dt;
+            }
+            if (month < 10) {
+                month = "0" + month;
+            }
+        
+            finalAirDate = year + "-" + month + "-" + dt;
+
         if (value === null) {
             console.log("hey that value is null");
+            message.channel.send('https://media.giphy.com/media/2yvoIFyZghBDszbIk3/giphy.gif')
             categoryMessage = "Category is '" + titleCase(category) + "'";
+            message.channel.send(`${message.author}, congratulations! You've activated a Daily Double. How much would you like to wager?`)
+
+            const client = new Client({
+                connectionString: process.env.DATABASE_URL,
+                // ssl: {
+                //   rejectUnauthorized: false
+                // }
+              });
+              
+              client.connect();
+        
+              const checkPoints = `
+                SELECT *
+                FROM jeopardy_test_points
+                WHERE userid = ${message.author.id}
+                `;
+        
+            client.query(checkPoints, (err, res) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+        
+                message.channel.send(`${message.author}` + ": $" + res.rows[0].points);
+        
+                // var numEntries = res.rowCount;
+                // console.log("numEntries: " + numEntries)
+        
+                // var i;
+                // for (i = 0; i < numEntries; i++) {
+                // //     var myuser = "'" + res.rows[i].userid + "'"
+                // //     const User = client.users.fetch(myuser);
+                //     discordMessage = <@! + res.rows[i].userid + > + ":  $" + res.rows[i].points;
+                //     console.log(discordMessage);
+                //     message.channel.send(discordMessage);
+        
+        
+                    // const User = client.users.cache.get(res.rows[i].userid); // Getting the user by ID.
+                    //     if (User) { // Checking if the user exists.
+                    //         message.channel.send(User.tag) // The user exists.
+                    //     } else {
+                    //         message.channel.send("User not found.") // The user doesn't exists or the bot couldn't find him.
+                    //     };
+                //   }
+                  
+                // console.log("Response is: " + res.rows[0].userid);
+        
+                client.end()
+
+                message.channel.send(`${message.author}` + ", your current balance is $" + res.rows[0].points)
+                message.channel.send(categoryMessage)
+            });
+
+            
           }
           else {
             addMoney = " for $" + value;
             categoryMessage = "Category is '" + titleCase(category) + "'" + " (#" + catNum + ") " + addMoney;
           }
 
-        message.channel.send(categoryMessage);
+        // message.channel.send(categoryMessage);
         // message.channel.send(question);
         // message.channel.send(answer);
 
@@ -46,6 +118,17 @@ function jeootest(message) {
         console.log("Answer: " + answer);
         console.log("Category number: " + catNum)
 
+
+        const exampleEmbed = new Discord.MessageEmbed()
+          .setTitle(question)
+          .setURL("https://discord.js.org/")
+          .setDescription(categoryMessage)
+          .addFields(
+            { name: "Airdate", value: finalAirDate, inline: true },
+            { name: "Category ID", value: catNum, inline: true },
+            { name: "Q ID", value: qID, inline: true }
+          );
+
         const filter = message => message.content.includes(answer);
         // const filter = message => message.content.includes("wtf");
 
@@ -53,7 +136,7 @@ function jeootest(message) {
         //     return (answer => answer.toLowerCase() === response.content.toLowerCase());
         // };
 
-        message.channel.send(question).then(() => {
+        message.channel.send(exampleEmbed).then(() => {
             message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
                 .then(collected => {
                     message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
@@ -144,4 +227,4 @@ function jeootest(message) {
     })
 }
 
-module.exports = jeootest
+module.exports = jeotest
