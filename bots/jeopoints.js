@@ -14,18 +14,27 @@ function pointsjeo(message) {
             SELECT * FROM jeopardy_test_points;
         `;
 
-        client.query(query, (err, res) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            else {
-                console.log(res.rows[0]);
-            }
+        // client.query(query, (err, res) => {
+        //     if (err) {
+        //         console.error(err);
+        //         return;
+        //     }
+        //     else {
+        //         console.log(res.rows[0]);
+        //     }
+
+            // async/await
+        try {
+            const res = await client.query(query)
+            console.log(res.rows[0])
+            // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+        } catch (err) {
+            console.log(err.stack)
+        }
             
             
 
-        })
+        // })
 
       client.end();
 }
