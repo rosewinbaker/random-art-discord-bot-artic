@@ -24,9 +24,25 @@ function jeo(message) {
         var category = body[0].category.title
         var value = body[0].value
         var catNum = body[0].category.id
+        var qID = body[0].id;
+        var airDate = body[0].airdate;
 
         var addMoney;
         var categoryMessage;
+
+        date = new Date(airDate);
+            year = date.getFullYear();
+            month = date.getMonth() + 1;
+            dt = date.getDate();
+        
+            if (dt < 10) {
+                dt = "0" + dt;
+            }
+            if (month < 10) {
+                month = "0" + month;
+            }
+        
+            finalAirDate = year + "-" + month + "-" + dt;
 
         if (value === null) {
             console.log("hey that value is null");
@@ -37,7 +53,7 @@ function jeo(message) {
             categoryMessage = "Category is '" + titleCase(category) + "'" + " (#" + catNum + ") " + addMoney;
           }
 
-        message.channel.send(categoryMessage);
+        // message.channel.send(categoryMessage);
         // message.channel.send(question);
         // message.channel.send(answer);
 
@@ -46,6 +62,17 @@ function jeo(message) {
         console.log("Answer: " + answer);
         console.log("Category number: " + catNum)
 
+
+        const exampleEmbed = new Discord.MessageEmbed()
+          .setTitle(question)
+          .setURL("https://discord.js.org/")
+          .setDescription(categoryMessage)
+          .addFields(
+            { name: "Airdate", value: finalAirDate, inline: true },
+            { name: "Category ID", value: catNum, inline: true },
+            { name: "Q ID", value: qID, inline: true }
+          );
+
         const filter = message => message.content.includes(answer);
         // const filter = message => message.content.includes("wtf");
 
@@ -53,7 +80,7 @@ function jeo(message) {
         //     return (answer => answer.toLowerCase() === response.content.toLowerCase());
         // };
 
-        message.channel.send(question).then(() => {
+        message.channel.send(exampleEmbed).then(() => {
             message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
                 .then(collected => {
                     message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
