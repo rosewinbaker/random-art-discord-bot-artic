@@ -18,15 +18,26 @@ function buildJeoQuestion() {
         if (err) {
           return console.log(err);
         }
+
+        var cleanAnswer = (body[0].answer).replace(/(<([^>]+)>)/gi, "");
+        var lowerAnswer = cleanAnswer.toLowerCase();
+
+        var questionObject = {
+            question: body[0].question,
+            answer: lowerAnswer,
+            value: body[0].value,
+            catNum: body[0].category.id,
+            qID: body[0].id,
+            airDate: body[0].airdate
+        }
     
-        var question = body[0].question;
-        var cleananswer = (body[0].answer).replace(/(<([^>]+)>)/gi, "");
-        var answer = cleananswer.toLowerCase();
-        var category = body[0].category.title;
-        var value = body[0].value;
-        var catNum = body[0].category.id;
-        var qID = body[0].id;
-        var airDate = body[0].airdate;
+        // var question = body[0].question;
+        // var answer = cleananswer.toLowerCase();
+        // var category = body[0].category.title;
+        // var value = body[0].value;
+        // var catNum = body[0].category.id;
+        // var qID = body[0].id;
+        // var airDate = body[0].airdate;
     
         var addMoney;
         var categoryMessage;
@@ -59,27 +70,27 @@ function buildJeoQuestion() {
 
 
 
-function jeo(message) {
+function jeo(message, questionObject, addMoney, categoryMessage, finalAirDate) {
 
     buildJeoQuestion();
 
         const exampleEmbed = new Discord.MessageEmbed()
-        .setTitle(question)
+        .setTitle(questionObject.question)
         .setURL("https://discord.js.org/")
         .setDescription(categoryMessage)
         .addFields(
         { name: "Airdate", value: finalAirDate, inline: true },
-        { name: "Category ID", value: catNum, inline: true },
-        { name: "Q ID", value: qID, inline: true }
+        { name: "Category ID", value: questionObject.catNum, inline: true },
+        { name: "Q ID", value: questionObject.qID, inline: true }
         );
 
     console.log("Category message: " + categoryMessage);
-    console.log("Question: " + question);
-    console.log("Answer: " + answer);
-    console.log("Category number: " + catNum);
+    console.log("Question: " + questionObject.question);
+    console.log("Answer: " + questionObject.answer);
+    console.log("Category number: " + questionObject.catNum);
     console.log("Airdate: " + airDate);
 
-    const filter = message => message.content.includes(answer.toLowerCase());
+    const filter = message => message.content.includes(questionObject.answer.toLowerCase());
 
     message.channel.send(exampleEmbed).then(() => {
       message.channel
