@@ -68,8 +68,8 @@ function buildJeoQuestion() {
         console.log("Answer: " + answer);
         console.log("Category number: " + catNum);
         console.log("Airdate: " + airDate);
-    });
-}
+    })
+};
 
 
 
@@ -186,7 +186,6 @@ function jeo(message) {
     //           message.channel.send("!meow");
     //       });
     });
-  });
-}
+  };
 
 module.exports = jeo;
