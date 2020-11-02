@@ -26,7 +26,7 @@ function pointsjeo(message) {
             return;
         }
 
-        message.channel.send(`${message.author}` + ": $" + res.rows[1].points);
+        message.channel.send(`${message.author}` + ": $" + res.rows[0].points);
 
         // var numEntries = res.rowCount;
         // console.log("numEntries: " + numEntries)
