@@ -12,7 +12,7 @@ function titleCase(str) {
  }
 
 
-// Build the message
+// Define jeo function that's called with "!jeo"
 function jeo(message) {
 
     // Make request to jService API for random question
