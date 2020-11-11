@@ -2,19 +2,20 @@ const { Client } = require('pg');
 const request = require('request');
 const Discord = require("discord.js");
 
+// Define titleCase for later use
 function titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
-        // You do not need to check if i is larger than splitStr length, as your for does that for you
-        // Assign it back to the array
         splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
     }
-    // Directly return the joined string
     return splitStr.join(' '); 
  }
 
+
+// Build the message
 function jeo(message) {
 
+    // Make request to jService API for random question
     request('http://jservice.io/api/random', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
@@ -31,6 +32,7 @@ function jeo(message) {
         var addMoney;
         var categoryMessage;
 
+        // Format date info to look pretty
         date = new Date(airDate);
             year = date.getFullYear();
             month = date.getMonth() + 1;
@@ -45,8 +47,10 @@ function jeo(message) {
         
             finalAirDate = year + "-" + month + "-" + dt;
 
+
+        // Check to see if value is null. If not, add that money information to categoryMessage
         if (value === null) {
-            console.log("hey that value is null");
+            console.log("Category value is null");
             categoryMessage = "Category is '" + titleCase(category) + "'";
           }
           else {
@@ -54,16 +58,12 @@ function jeo(message) {
             categoryMessage = "Category is '" + titleCase(category) + "'" + " (#" + catNum + ") " + addMoney;
           }
 
-        // message.channel.send(categoryMessage);
-        // message.channel.send(question);
-        // message.channel.send(answer);
-
         console.log("Category message: " + categoryMessage);
         console.log("Question: " + question);
         console.log("Answer: " + answer);
         console.log("Category number: " + catNum)
 
-
+        // Build embedded message
         const exampleEmbed = new Discord.MessageEmbed()
           .setTitle(question)
           .setURL("https://discord.js.org/")
@@ -74,20 +74,20 @@ function jeo(message) {
             { name: "Q ID", value: qID, inline: true }
           );
 
+        // Define a filter for correct answer 
         const filter = message => message.content.includes(answer);
-        // const filter = message => message.content.includes("wtf");
 
-        // const filter = response => {
-        //     return (answer => answer.toLowerCase() === response.content.toLowerCase());
-        // };
-
+        // Send the embdedded message and check for message that match our filter
         message.channel.send(exampleEmbed).then(() => {
             message.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ['time'] })
+
+                // Win condition
                 .then(collected => {
                     message.channel.send(`${collected.first().author} got the correct answer! ` + answer);
                     message.channel.send(`${value} to ${collected.first().author}. You go, ${collected.first().author}!`)
                     console.log(`${collected.first().author.id} got the correct answer! `)
 
+                    // Start a connection to psql database
                     const client = new Client({
                         connectionString: process.env.DATABASE_URL,
                         // ssl: {
@@ -97,6 +97,7 @@ function jeo(message) {
                       
                       client.connect();
 
+                      // Check to see if user exists
                       const checkUser = `
                         SELECT *
                         FROM jeopardy_test_points
@@ -111,6 +112,7 @@ function jeo(message) {
 
                         console.log("Row count is: " + res.rowCount);
 
+                        // If user exists, add posts to existing user entry
                         if (res.rowCount == 1) {
                             console.log("User exists. Updating table with points.")
                             const query = `
@@ -128,6 +130,7 @@ function jeo(message) {
                             
                         }
 
+                        // If this is a new user, add a new entry for them
                         else {
                             console.log("Did not find existing user. Adding new user entry now for " + `${collected.first().author.id}`)
                             const query = `
@@ -148,23 +151,9 @@ function jeo(message) {
                         client.end();
                       }); 
                       
-                    //   const query = `
-                    //   INSERT INTO jeopardy_test_points (userid, points)
-                    //   VALUES (${collected.first().author.id}, ${value})
-                    //   `;
-                      
-                    //   client.query(query, (err, res) => {
-                    //     if (err) {
-                    //         console.error(err);
-                    //         return;
-                    //     }
-                    //     console.log('Data was inserted successfully');
-                    //     client.end();
-                    //   });
-
-
-
                 })
+
+                // Lose condition. Better luck next time.
                 .catch(collected => {
                     message.channel.send('Looks like nobody got the answer this time. Correct answer: ' + answer);
                 });
