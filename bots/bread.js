@@ -8,7 +8,7 @@ function bread(message) {
 
             console.log(body)
 
-            var breadmessage = '<' + process.env.MY_ID + '> ' + body;
+            var breadmessage = '<@' + process.env.MY_ID + '> ' + body;
 
             message.channel.send(breadmessage);
         
