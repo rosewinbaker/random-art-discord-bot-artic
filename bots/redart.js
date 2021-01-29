@@ -3,7 +3,7 @@ const request = require('request');
 
 function redart(message) {
 
-    request('https://www.reddit.com/r/generative/top.json?limit=100', { json: true }, (err, res, body) => {
+    request('https://www.reddit.com/r/generative/top.json?limit=100&t=all', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
         function generateEntry() {
@@ -26,7 +26,7 @@ function redart(message) {
   
             // message.channel.send({embed});
 
-            message.channel.send(name + "\n" + url)
+            message.channel.send(url)
         }
 
         generateEntry();
