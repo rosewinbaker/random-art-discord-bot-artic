@@ -15,7 +15,7 @@ function redart(message) {
             // const embed = new Discord.MessageEmbed();
 
             var name = body.data.children[randomEntry].data.title;
-            var url = body.data.children[randomEntry].data.url_overridden_by_des;
+            var url = body.data.children[randomEntry].data.url_overridden_by_dest;
 
             console.log("Name: " + name)
             console.log("URL: " + url)
