@@ -28,6 +28,8 @@ function redart(message) {
 
             message.channel.send(name + "\n" + url)
         }
+
+        generateEntry();
         
       });
 };
