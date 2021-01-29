@@ -15,4 +15,4 @@ function bread(message) {
       });
 };
 
-module.exports = queen
+module.exports = bread
