@@ -15,6 +15,7 @@ var newart = require('./bots/newart.js');
 var xkcd = require('./bots/xkcd.js');
 var plant = require('./bots/plant.js');
 var bread = require('./bots/bread.js');
+var redart = require('./bots/redart.js');
 var pointsjeo = require('./bots/jeopoints.js');
 // import { imageDataURL } from "./bots/newart.js";
 const { createCanvas, loadImage } = require('canvas')
@@ -85,6 +86,13 @@ client.on("message", (message) => {
     else if (message.content.startsWith("!bread")) {
       bread(message);
     }
+
+
+    // redart
+    else if (message.content.startsWith("!redart")) {
+      redart(message);
+    }
+
 
   // gen art question
   else if (message.content.startsWith("!newart")) {
