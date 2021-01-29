@@ -80,6 +80,11 @@ client.on("message", (message) => {
       plant(message);
     }
 
+    // bread
+    else if (message.content.startsWith("!bread")) {
+      bread(message);
+    }
+
   // gen art question
   else if (message.content.startsWith("!newart")) {
     newart(message);
