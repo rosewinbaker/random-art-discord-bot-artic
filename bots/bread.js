@@ -8,7 +8,7 @@ function bread(message) {
 
             console.log(body)
 
-            var breadmessage = body;
+            var breadmessage = '<' + MY_ID + '> ' + body;
 
             message.channel.send(breadmessage);
         
