@@ -14,6 +14,7 @@ var meow = require('./bots/meow.js');
 var newart = require('./bots/newart.js');
 var xkcd = require('./bots/xkcd.js');
 var plant = require('./bots/plant.js');
+var bread = require('./bots/bread.js');
 var pointsjeo = require('./bots/jeopoints.js');
 // import { imageDataURL } from "./bots/newart.js";
 const { createCanvas, loadImage } = require('canvas')
