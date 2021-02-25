@@ -16,6 +16,7 @@ var xkcd = require('./bots/xkcd.js');
 var plant = require('./bots/plant.js');
 var bread = require('./bots/bread.js');
 var redart = require('./bots/redart.js');
+var tarot = require('./bots/tarot.js');
 var pointsjeo = require('./bots/jeopoints.js');
 // import { imageDataURL } from "./bots/newart.js";
 const { createCanvas, loadImage } = require('canvas')
@@ -86,6 +87,12 @@ client.on("message", (message) => {
     else if (message.content.startsWith("!bread")) {
       bread(message);
     }
+
+      // tarot
+      else if (message.content.startsWith("!tarot")) {
+        tarot(message);
+      }
+  
 
 
     // redart
