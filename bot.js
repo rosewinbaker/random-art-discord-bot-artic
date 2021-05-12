@@ -132,6 +132,8 @@ client.on("message", (message) => {
     //   .setImage(imageDataURL)
     //   .setThumbnail(imageDataURL)
     //   message.channel.send(embed) 
+
+    // line
   };
 });
 
