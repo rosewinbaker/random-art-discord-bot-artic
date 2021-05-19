@@ -75,7 +75,7 @@ function jeo(message) {
           );
 
         // Define a filter for correct answer 
-        const filter = message => message.content.includes(answer);
+        const filter = message => message.content.toLowerCase().includes(answer);
 
         // Send the embdedded message and check for message that match our filter
         message.channel.send(exampleEmbed).then(() => {
