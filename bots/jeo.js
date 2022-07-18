@@ -155,7 +155,7 @@ function jeo(message) {
                 // Lose condition. Better luck next time.
                 .catch(collected => {
                     message.channel.send('Looks like nobody got the answer this time. Correct answer: ' + answer);
-                    console.log("No winner chicken dinner");
+                    console.log("No winner");
                 });
             });
     })
