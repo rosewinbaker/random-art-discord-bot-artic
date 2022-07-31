@@ -86,6 +86,8 @@ function jeo(message) {
                     message.channel.send(`${value} to ${collected.first().author}. You go, ${collected.first().author}!`)
                     console.log(`${collected.first().author.id} got the correct answer! `)
 
+                    /*
+
                     // Start a connection to psql database
                     const client = new Client({
                         connectionString: process.env.DATABASE_URL,
@@ -103,7 +105,7 @@ function jeo(message) {
                         WHERE userid = ${collected.first().author.id}
                         `;
 
-                    client.query(checkUser, (err, res) => {
+                        client.query(checkUser, (err, res) => {
                         if (err) {
                             console.error(err);
                             return;
@@ -148,7 +150,10 @@ function jeo(message) {
                         }
 
                         client.end();
-                      }); 
+                      })
+                      */
+                      
+                      ; 
                       
                 })
 
