@@ -51,9 +51,9 @@ client.on("message", (message) => {
   }
 
   // Jeopardy question
-  // else if (message.content.startsWith("!jeo")) {
-  //   jeo(message);
-  // }
+  else if (message.content.startsWith("!jeo")) {
+    jeo(message);
+  }
 
     // Jeopardy question
     else if (message.content.startsWith("!testjeo")) {
