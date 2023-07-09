@@ -15,6 +15,7 @@ function titleCase(str) {
 // Define jeo function that's called with "!jeo"
 function jeo(message) {
 
+    console.log("Sending message")
     // Make request to jService API for random question
     request('http://jservice.io/api/random', { json: true }, (err, res, body) => {
         if (err) { return console.log(err); }
