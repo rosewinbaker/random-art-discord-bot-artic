@@ -1,10 +1,7 @@
 require('dotenv').config()
 const Discord = require("discord.js")
-var jeo = require('./bots/jeo.js')
-var jeotest = require('./bots/jeotest.js')
-const db = require('./models/index.js')
-
-const client = new Discord.Client()
+// const client = new Discord.Client()
+var newjeo = require('./bots/newjeo.js')
 
 client.on("ready", () => {
   console.log("I am ready!")
@@ -12,8 +9,8 @@ client.on("ready", () => {
 
 client.on("message", (message) => {
   // Jeopardy question
-  if (message.content.startsWith("!jeo")) {
-    jeo(message)
+  if (message.content.startsWith("!newjeo")) {
+    newjeo(message)
   }
 
   // Test jeopardy question
@@ -22,4 +19,4 @@ client.on("message", (message) => {
   }
 })
 
-client.login(process.env.CLIENT_TOKEN)
+// client.login(process.env.CLIENT_TOKEN)
