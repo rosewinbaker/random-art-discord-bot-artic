@@ -1,6 +1,6 @@
 require('dotenv').config()
 const Discord = require("discord.js")
-const client = new Discord.Client()
+// const client = new Discord.Client()
 var newjeo = require('./bots/newjeo.js')
 
 client.on("ready", () => {
@@ -19,4 +19,4 @@ client.on("message", (message) => {
   }
 })
 
-client.login(process.env.CLIENT_TOKEN)
+// client.login(process.env.CLIENT_TOKEN)

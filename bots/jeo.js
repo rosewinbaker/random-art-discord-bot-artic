@@ -167,4 +167,4 @@ function jeo(message) {
     })
 }
 
-module.exports = jeoooo
+module.exports = jeo
